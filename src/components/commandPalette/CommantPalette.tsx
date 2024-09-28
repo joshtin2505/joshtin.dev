@@ -59,8 +59,9 @@ function CommantPalette({
           <CommandEmpty className="p-1 w-full flex flex-col gap-1 items-center">
             <strong>No results found</strong>
           </CommandEmpty>
-          <CommandGroup className="" heading="General">
-            {/* <CommandItem
+          {pathname.includes('curriculum') && (
+            <CommandGroup className="" heading="General">
+              {/* <CommandItem
               className="flex justify-between p-1 px-2 hover:cursor-pointer hover:bg-white/10 rounded-md"
               onSelect={() => setOpen(false)}
             >
@@ -72,7 +73,7 @@ function CommantPalette({
                 <kbd>Ctrl + K</kbd>
               </span>
             </CommandItem> */}
-            {pathname.includes('curriculum') && (
+
               <CommandItem
                 className="flex justify-between p-1 px-2 hover:cursor-pointer hover:bg-white/10 rounded-md"
                 onSelect={() => window.print()}
@@ -85,8 +86,8 @@ function CommantPalette({
                   <kbd>Ctrl + P</kbd>
                 </span>
               </CommandItem>
-            )}
-          </CommandGroup>
+            </CommandGroup>
+          )}
           <CommandSeparator />
           <CommandGroup className="flex flex-col " heading="Social">
             {socials &&

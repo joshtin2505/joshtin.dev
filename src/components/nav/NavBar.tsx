@@ -57,7 +57,7 @@ function NavBar() {
           >
             <li>
               <button
-                className="hidden w-48 justify-between md:flex bg-neutral-100 dark:bg-neutral-900 rounded pl-2 py-1"
+                className="hidden items-center w-48 justify-between md:flex bg-neutral-100 dark:bg-neutral-900 rounded pl-2 py-1"
                 onClick={simulateCtrlK}
               >
                 <span className="text-neutral-500">Serch...</span>
