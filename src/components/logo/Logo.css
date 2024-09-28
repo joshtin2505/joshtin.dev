@@ -1,0 +1,15 @@
+.titleLogo {
+  @apply font-mono inline-block relative;
+}
+
+.titleLogo::after {
+  @apply content-[''] absolute w-full bottom-1 left-0 bg-red-400 origin-bottom-right transition-transform duration-500 ease-out;
+
+  transform: scaleX(0);
+  height: 2px;
+}
+
+.titleLogo:hover:after {
+  transform: scaleX(1);
+  transform-origin: bottom left;
+}
