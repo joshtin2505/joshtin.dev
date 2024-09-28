@@ -1,0 +1,45 @@
+.hero-container {
+  @apply flex w-full justify-between items-center gap-1;
+}
+
+.info {
+  @apply flex flex-col gap-2 pr-8;
+}
+
+h2 {
+  @apply text-xl font-medium text-neutral-700 text-balance dark:text-neutral-300;
+}
+
+div figure img {
+  @apply w-36 h-36 rounded-md object-cover aspect-square;
+}
+
+span {
+  @apply text-sm text-neutral-600 dark:text-neutral-400 flex items-center gap-1 tracking-tight;
+}
+
+footer {
+  @apply flex gap-1 text-xs text-neutral-500 dark:text-neutral-400 mt-2;
+}
+
+footer a {
+  @apply text-neutral-500 dark:text-neutral-400 dark:border-neutral-700 dark:hover:bg-neutral-700 dark:hover:border-neutral-400 inline-flex items-center justify-center border hover:bg-neutral-100 hover:border-neutral-200 border-neutral-100 rounded-md p-1 h-8 w-8 transition-all duration-300;
+}
+
+html.dark span {
+  color: #ccc;
+}
+
+@media screen and (max-width: 450px) {
+  .container {
+    flex-direction: column-reverse;
+    gap: 1rem;
+
+    .info {
+      text-align: center;
+      text-wrap: pretty;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+}

@@ -17,7 +17,7 @@ function Hero({}) {
     (props: SVGProps<SVGSVGElement>) => JSX.Element
   > = {
     LinkedIn,
-    Github,
+    GitHub: Github,
     X,
     NPM: Npm
   }
@@ -36,7 +36,7 @@ function Hero({}) {
           <h1 className="text-4xl dark:text-white">{name}</h1>
           <h2>{label}</h2>
           <span>
-            <GlobeIcon />
+            <GlobeIcon className="size-4" />
             {city === null && region === null
               ? 'Ubicación desconocida'
               : `${city}, ${region}`}
@@ -50,7 +50,7 @@ function Hero({}) {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <MailIcon />
+                <MailIcon className="size-5" />
               </a>
             )}
             {phone && (
@@ -60,7 +60,7 @@ function Hero({}) {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <PhoneIcon />
+                <PhoneIcon className="size-5" />
               </a>
             )}
             {profiles && profiles.length > 0
@@ -74,7 +74,7 @@ function Hero({}) {
                       target="_blank"
                       rel="noopener noreferrer"
                     >
-                      <Icon />
+                      <Icon className="size-5" />
                     </a>
                   )
                 })
