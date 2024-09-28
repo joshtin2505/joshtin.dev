@@ -1,19 +1,17 @@
 'use client'
 // import { SocialKeymaps } from "@/types"
 import {
-  Command,
   CommandDialog,
   CommandEmpty,
   CommandGroup,
   CommandInput,
   CommandItem,
   CommandList,
-  CommandSeparator,
-  CommandShortcut
+  CommandSeparator
 } from '@/components/ui/command'
 import { usePathname } from 'next/navigation'
 
-import { SVGProps, useEffect, useRef, useState } from 'react'
+import { SVGProps, useEffect, useState } from 'react'
 
 function CommantPalette({
   socials
@@ -28,8 +26,6 @@ function CommantPalette({
   }[]
 }) {
   const pathname = usePathname()
-  // console.log(socials)
-  // const containerElement = useRef<HTMLDivElement>(null)
   const [open, setOpen] = useState(false)
   useEffect(() => {
     const down = (e: KeyboardEvent) => {
@@ -107,13 +103,6 @@ function CommantPalette({
           </CommandGroup>
         </CommandList>
       </CommandDialog>
-      {/* <div
-        className={
-          'fixed w-screen h-screen top-0 left-0 bg-neutral-950/80 z-20 '
-        }
-        hidden={!open}
-        ref={containerElement}
-      /> */}
     </>
   )
 }

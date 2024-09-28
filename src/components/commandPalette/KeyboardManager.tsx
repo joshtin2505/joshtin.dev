@@ -1,6 +1,6 @@
 'use client'
 import cvJson from '@/mocks/cv.json'
-import './keyboardManager.css'
+import './KeyboardManager'
 
 import { SVGProps } from 'react'
 import CommantPalette from './CommantPalette'

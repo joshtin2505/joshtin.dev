@@ -1,7 +1,8 @@
 import React from 'react'
 import Section from '../Section'
-import { work } from '@/mocks/cv.json'
+import cv from '@/mocks/cv.json'
 function Experience() {
+  const { work } = cv
   return (
     <Section title="Experiencia">
       <ul className="flex flex-col gap-8">
