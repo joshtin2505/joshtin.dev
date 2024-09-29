@@ -242,7 +242,8 @@
       "highlights": ["NPM Package", "Save time", "Easy to use", "Open Source"],
       "tecnolgies": ["Typescript"],
       "img": ["https://bcfiles.vercel.app/ogImg.png"],
-      "url": "https://bcfiles.vercel.app/"
+      "url": "https://bcfiles.vercel.app/",
+      "repoUrl": "https://github.com/joshtin2505/bc-files"
     }
   ],
   "toolsIUse": [
