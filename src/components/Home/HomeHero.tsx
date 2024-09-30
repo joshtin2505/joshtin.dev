@@ -37,7 +37,7 @@ function HomeHero() {
               />
             </figure>
           </header>
-          <footer className="md:w-full z-0 flex md:justify-between justify-center items-center mt-1 flex-col md:flex-row">
+          <footer className="md:w-full z-0 flex md:justify-between justify-center items-center mt-1 flex-col md:flex-row ">
             <h4 className="md:text-xl tracking-normal text-lg font-medium font-mono xs:tracking-wide  text-nowrap  dark:text-neutral-300 ">
               {basics.label}
             </h4>

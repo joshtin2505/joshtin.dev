@@ -8,10 +8,10 @@ import { MailIcon } from 'lucide-react'
 function Footer() {
   const { basics } = cvJson
   return (
-    <footer className="print:hidden w-full dark:bg-black border dark:border-neutral-900 dark:text-neutral-200 py-4 flex flex-col">
+    <footer className="print:hidden w-full dark:bg-black border dark:border-neutral-900 dark:text-neutral-200 py-4 flex flex-col ">
       <div className="w-full">
-        <div className="max-w-screen-xl mx-auto px-4 py-5 flex justify-between">
-          <div className="flex items-center gap-3">
+        <div className="max-w-screen-xl mx-auto px-4 py-5 flex sm:justify-between flex-col-reverse justify-center sm:flex-row ">
+          <div className="flex items-center gap-3 justify-center md:justify-normal">
             <h5 className="font-mono-mono capitalize">Contact me :3</h5>
             <ul className="flex gap-2">
               {basics.profiles.map(({ network, url }, i) => {
@@ -44,13 +44,17 @@ function Footer() {
               </li>
             </ul>
           </div>
-          <div className="flex items-center gap-3 ">
-            <ul className="flex gap-2 [&>a]:text-white [&>a]:hover:text-muted-foreground">
+          <div className="flex items-center gap-3 justify-center md:justify-normal">
+            <ul className="flex gap-2">
               <li>
-                <Link href="/">Home</Link>
+                <Link href="/" className="hover:underline">
+                  Home
+                </Link>
               </li>
               <li>
-                <Link href="/curriculum">Curriculum</Link>
+                <Link href="/curriculum" className="hover:underline">
+                  Curriculum
+                </Link>
               </li>
             </ul>
           </div>

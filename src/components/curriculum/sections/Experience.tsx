@@ -52,7 +52,7 @@ function Experience() {
                     </div>
                   </header>
 
-                  <footer>
+                  <footer className="cv-footer">
                     <p>{summary}</p>
                   </footer>
                 </article>

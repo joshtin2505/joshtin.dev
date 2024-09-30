@@ -5,6 +5,13 @@ import { useCallback, useEffect, useState } from 'react'
 import './NavBar.css'
 import Logo from '../logo/Logo'
 import { ModeToggle } from '../Theme/ModeToggle'
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger
+} from '../ui/dropdown-menu'
+import { AlignJustifyIcon } from 'lucide-react'
 // import { FaBars } from "react-icons/fa6"
 
 function NavBar() {
@@ -72,11 +79,16 @@ function NavBar() {
                 )}
               </button>
             </li>
-            <li className="dark:hover:text-white">
-              <Link href="/curriculum">Curriculum</Link>
+            <li>
+              <Link className="dark:hover:text-white" href="/curriculum">
+                Curriculum
+              </Link>
             </li>
-            <li className="text-neutral-500  text-center">
-              <Link className="flex gap-1" href="/blog">
+            <li>
+              <Link
+                className="text-neutral-500 text-center flex gap-1"
+                href="/blog"
+              >
                 Blog
                 <span className="border border-neutral-400 bg-neutral-500/10 rounded-full px-2 text-sm text-center">
                   comming
@@ -84,6 +96,29 @@ function NavBar() {
               </Link>
             </li>
           </ul>
+          <div className="flex items-center sm:hidden">
+            <DropdownMenu>
+              <DropdownMenuTrigger className="outline-none">
+                <AlignJustifyIcon className="size-5 outline-none" />
+              </DropdownMenuTrigger>
+              <DropdownMenuContent>
+                <DropdownMenuItem>
+                  <Link href="/curriculum">Curriculum</Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem>
+                  <Link
+                    className="text-neutral-500 text-center flex gap-1"
+                    href="/blog"
+                  >
+                    Blog
+                    <span className="border border-neutral-400 bg-neutral-500/10 rounded-full px-2 text-sm text-center">
+                      comming
+                    </span>
+                  </Link>
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
+          </div>
           <ModeToggle />
         </div>
       </nav>

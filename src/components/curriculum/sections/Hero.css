@@ -18,11 +18,15 @@ span {
   @apply text-sm text-neutral-600 dark:text-neutral-400 flex items-center gap-1 tracking-tight;
 }
 
-footer {
+.cv-footer {
   @apply flex gap-1 text-xs text-neutral-500 dark:text-neutral-400 mt-2;
 }
 
-footer a {
+.cv-hero-footer {
+  @apply flex gap-1 text-xs text-neutral-500 dark:text-neutral-400 mt-2 print:hidden;
+}
+
+.cv-footer a {
   @apply text-neutral-500 dark:text-neutral-400 dark:border-neutral-700 dark:hover:bg-neutral-700 dark:hover:border-neutral-400 inline-flex items-center justify-center border hover:bg-neutral-100 hover:border-neutral-200 border-neutral-100 rounded-md p-1 h-8 w-8 transition-all duration-300;
 }
 

@@ -25,7 +25,7 @@ function Education() {
                   </time>
                 </header>
 
-                <footer>
+                <footer className="cv-footer">
                   <p>{area}</p>
                 </footer>
               </article>

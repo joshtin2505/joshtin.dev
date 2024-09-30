@@ -30,7 +30,7 @@ function Hero({}) {
               : `${city}, ${region}`}
           </span>
           <footer className="hidden print:block ">{printInfo}</footer>
-          <footer className="print:hidden">
+          <footer className="cv-hero-footer">
             {email && (
               <Link
                 href={`mailto:${email}`}
