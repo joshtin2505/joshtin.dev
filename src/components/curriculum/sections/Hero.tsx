@@ -1,26 +1,14 @@
 import cvJson from '@/mocks/cv.json'
 import Section from '../Section'
-// import { WorldMap, Phone } from "../../icons/OthersIcons"
-import { SVGProps } from 'react'
 import Image from 'next/image'
 import './Hero.css'
-import { X, Github, LinkedIn, Npm } from '@/components/icon'
 import { GlobeIcon, MailIcon, PhoneIcon } from 'lucide-react'
+import { SOCIAL_ICONS } from '@/lib/SocialIcons'
+import Link from 'next/link'
 
 function Hero({}) {
   const { basics } = cvJson
   const { name, label, email, image, location, phone, profiles } = basics
-
-  const SOCIAL_ICONS: Record<
-    string,
-    // eslint-disable-next-line no-unused-vars
-    (props: SVGProps<SVGSVGElement>) => JSX.Element
-  > = {
-    LinkedIn,
-    GitHub: Github,
-    X,
-    NPM: Npm
-  }
 
   const linkedinUrl = profiles.find(
     ({ network }) => network === 'LinkedIn'
@@ -44,30 +32,30 @@ function Hero({}) {
           <footer className="hidden print:block ">{printInfo}</footer>
           <footer className="print:hidden">
             {email && (
-              <a
+              <Link
                 href={`mailto:${email}`}
                 title={`Enviar un correo a ${name} al mail ${email}`}
                 target="_blank"
                 rel="noopener noreferrer"
               >
                 <MailIcon className="size-5" />
-              </a>
+              </Link>
             )}
             {phone && (
-              <a
+              <Link
                 href={`tel:${phone}`}
                 title={`llamar por telefono a ${name} al telefono ${phone}`}
                 target="_blank"
                 rel="noopener noreferrer"
               >
                 <PhoneIcon className="size-5" />
-              </a>
+              </Link>
             )}
             {profiles && profiles.length > 0
               ? profiles.map(({ network, url }) => {
                   const Icon = SOCIAL_ICONS[network]
                   return (
-                    <a
+                    <Link
                       key={network}
                       href={url}
                       title={`Visitar el perfil de ${name} en ${network}`}
@@ -75,7 +63,7 @@ function Hero({}) {
                       rel="noopener noreferrer"
                     >
                       <Icon className="size-5" />
-                    </a>
+                    </Link>
                   )
                 })
               : null}

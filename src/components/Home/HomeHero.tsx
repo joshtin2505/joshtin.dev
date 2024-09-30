@@ -3,23 +3,13 @@ import cvJson from '@/mocks/cv.json'
 import './HomeHero.css'
 import Link from 'next/link'
 import DevTemplates from './DevTemplates'
-import { LinkedIn, Github, Npm, X } from '@/components/icon'
-import { SVGProps } from 'react'
 import { MailIcon } from 'lucide-react'
 import Articles from './Articles'
+import { SOCIAL_ICONS } from '@/lib/SocialIcons'
 
 function HomeHero() {
   const { basics } = cvJson
-  const SOCIAL_ICONS: Record<
-    string,
-    // eslint-disable-next-line no-unused-vars
-    (props: SVGProps<SVGSVGElement>) => JSX.Element
-  > = {
-    LinkedIn,
-    GitHub: Github,
-    NPM: Npm,
-    X
-  }
+
   return (
     <section className="w-full dark:bg-[url('/BgDarkHero.png')] bg-[url('/BgLightHero.png')] bg-cover bg-center bg-no-repeat relative before:absolute before:inset-0 before:bg-gradient-to-b before:from-transparent dark:before:to-black before:to-white min-h-[calc(100vh-69px)]">
       <div className=" max-w-5xl mx-auto lg:px-0 sm:px-5 py-8 relative z-10 h-full">

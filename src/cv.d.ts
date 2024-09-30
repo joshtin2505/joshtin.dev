@@ -128,8 +128,8 @@ interface Projects {
   isActive: boolean | null
   description: string
   highlights: Highlight
-  url: string
-  repoUrl: string
+  url: string | null
+  repoUrl: string | null
   img: string[] | []
   tecnolgies: string[] | []
 }

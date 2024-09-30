@@ -1,17 +1,14 @@
+'use client'
 import { Button } from '@/components/ui/button'
-import {
-  Card,
-  CardContent,
-  CardFooter,
-  CardHeader,
-  CardTitle
-} from '@/components/ui/card'
+import { Card, CardContent, CardFooter } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { ExternalLink, CheckCircle2 } from 'lucide-react'
 import { Github } from '../icon'
 import Image from 'next/image'
 import type { Projects } from '@/cv.d'
 import Link from 'next/link'
+import { cn } from '@/lib/utils'
+import { Tooltip, TooltipContent, TooltipTrigger } from '../ui/tooltip'
 
 export default function CardProject({ project }: { project: Projects }) {
   return (
@@ -61,18 +58,40 @@ export default function CardProject({ project }: { project: Projects }) {
         </div>
       </CardContent>
       <CardFooter className="flex justify-between pt-2">
-        <Link href={project.repoUrl}>
-          <Button size="sm" variant="outline">
-            <Github className="w-4 h-4 mr-2" />
-            Source Code
-          </Button>
-        </Link>
-        <Link href={project.url} target="_blank" passHref>
-          <Button size="sm" variant="default">
-            <ExternalLink className="w-4 h-4 mr-2" />
-            View Project
-          </Button>
-        </Link>
+        <Tooltip>
+          <TooltipTrigger asChild>
+            <Link
+              href={project.repoUrl ?? ''}
+              className={cn(!!project.repoUrl ? 'cursor-not-allowed' : '')}
+              target="_blank"
+            >
+              <Button size="sm" variant="outline" disabled={!project.repoUrl}>
+                <Github className="w-4 h-4 mr-2" />
+                Source Code
+              </Button>
+            </Link>
+          </TooltipTrigger>
+          <TooltipContent>
+            {!!project.repoUrl ? 'Go To Repository' : 'This project is private'}
+          </TooltipContent>
+        </Tooltip>
+        <Tooltip>
+          <TooltipTrigger asChild>
+            <Link
+              href={project.url ?? ''}
+              className={cn(!!project.url ? 'cursor-not-allowed' : '')}
+              target="_blank"
+            >
+              <Button size="sm" variant="default" disabled={!project.repoUrl}>
+                <ExternalLink className="w-4 h-4 mr-2" />
+                View Project
+              </Button>
+            </Link>
+          </TooltipTrigger>
+          <TooltipContent>
+            {!!project.url ? 'Go To Demo' : 'This project not is in production'}
+          </TooltipContent>
+        </Tooltip>
       </CardFooter>
     </Card>
   )
