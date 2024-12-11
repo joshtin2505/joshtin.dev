@@ -17,9 +17,11 @@ function Experience() {
             url
           }) => {
             const startYear = new Date(startDate).getFullYear()
+            const startMonth = new Date(startDate).getMonth() + 1
             const endYear =
-              endDate != null ? new Date(endDate).getFullYear() : 'Actual'
-
+              endDate != null ? new Date(endDate).getFullYear() + '/' : 'Actual'
+            const endMonth =
+              endDate != null ? new Date(endDate).getMonth() + 1 : ''
             return (
               <li key={name}>
                 <article>
@@ -40,14 +42,14 @@ function Experience() {
 
                     <div className="[&>time]:text-muted-foreground [&>time]:text-sm [&>time]:min-w-24 [&>time]:cursor-default  ">
                       <time dateTime={startDate} data-title={startDate}>
-                        {startYear}
+                        {startMonth}/{startYear}
                       </time>
                       {' - '}
                       <time
                         dateTime={endDate ?? undefined}
                         data-title={endDate}
                       >
-                        {endYear}
+                        {`${endMonth}${endYear}`}
                       </time>
                     </div>
                   </header>
