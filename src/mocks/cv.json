@@ -238,7 +238,7 @@
     {
       "name": "Creator Bundle Files",
       "isActive": true,
-      "description": "This package is designed to save time creating folders and files when starting a project. Additionally, it can be used to add folder and file creation functionality to your software.",
+      "description": "Este paquete está diseñado para ahorrar tiempo en la creación de carpetas y archivos al iniciar un proyecto. Además, se puede utilizar para agregar funcionalidad de creación de carpetas y archivos a su app.",
       "highlights": ["NPM Package", "Save time", "Easy to use", "Open Source"],
       "tecnolgies": ["Typescript"],
       "img": ["https://bcfiles.vercel.app/ogImg.png"],
