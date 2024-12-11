@@ -236,9 +236,19 @@
   ],
   "projects": [
     {
+      "name": "Urbanestia",
+      "isActive": true,
+      "description": "Urbanestia es una plataforma que ofrece a sus usarios la posibilidad de encontrar, comprar u arrendar porpiedades de la manera más fácil, rápida y segura.",
+      "highlights": ["Real State", "Buy", "Web App"],
+      "tecnolgies": ["Typescript", "React", "Tailwind", "Next.js"],
+      "img": [""],
+      "url": "https://urbanestia.co/",
+      "repoUrl": null
+    },
+    {
       "name": "Creator Bundle Files",
       "isActive": true,
-      "description": "Este paquete está diseñado para ahorrar tiempo en la creación de carpetas y archivos al iniciar un proyecto. Además, se puede utilizar para agregar funcionalidad de creación de carpetas y archivos a su app.",
+      "description": "Este paquete está diseñado para ahorrar tiempo en la creación de carpetas y archivos al iniciar un proyecto y agregar funcionalidad de creación de carpetas y archivos a su app.",
       "highlights": ["NPM Package", "Save time", "Easy to use", "Open Source"],
       "tecnolgies": ["Typescript"],
       "img": ["https://bcfiles.vercel.app/ogImg.png"],
