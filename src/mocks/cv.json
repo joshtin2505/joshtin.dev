@@ -248,8 +248,8 @@
     {
       "name": "Creator Bundle Files",
       "isActive": true,
-      "description": "Este paquete está diseñado para ahorrar tiempo en la creación de carpetas y archivos al iniciar un proyecto y agregar funcionalidad de creación de carpetas y archivos a su app.",
-      "highlights": ["NPM Package", "Save time", "Easy to use", "Open Source"],
+      "description": "Diseñado para ahorrar tiempo en la creación de carpetas y archivos al iniciar un proyecto y agregar funcionalidad de creación de carpetas y archivos a su app.",
+      "highlights": ["Save time", "Easy to use", "Open Source"],
       "tecnolgies": ["Typescript"],
       "img": ["https://bcfiles.vercel.app/ogImg.png"],
       "url": "https://bcfiles.vercel.app/",
