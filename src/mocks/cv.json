@@ -248,7 +248,7 @@
     {
       "name": "Creator Bundle Files",
       "isActive": true,
-      "description": "Diseñado para ahorrar tiempo en la creación de carpetas y archivos al iniciar un proyecto y agregar funcionalidad de creación de carpetas y archivos a su app.",
+      "description": "Diseñado para ahorrar tiempo en la creación de carpetas y archivos. Pudes usarlo al iniciar un proyecto y al agregar funcionalidad de creación de carpetas y archivos a su app.",
       "highlights": ["Save time", "Easy to use", "Open Source"],
       "tecnolgies": ["Typescript"],
       "img": ["https://bcfiles.vercel.app/ogImg.png"],
