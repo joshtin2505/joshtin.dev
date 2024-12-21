@@ -1,13 +1,13 @@
-import { type ReactNode } from "react";
+import { type ReactNode } from 'react'
 
 function Section({
   title,
   children,
-  id = "",
+  id = ''
 }: {
-  title?: string;
-  children: ReactNode;
-  id?: string;
+  title?: string
+  children: ReactNode
+  id?: string
 }) {
   return (
     <section id={id} className="max-w-[700px] mx-auto mb-8 relative">
@@ -18,7 +18,7 @@ function Section({
       )}
       {children}
     </section>
-  );
+  )
 }
 
-export default Section;
+export default Section

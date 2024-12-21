@@ -12,7 +12,7 @@ import { Tooltip, TooltipContent, TooltipTrigger } from '../ui/tooltip'
 
 export default function CardProject({ project }: { project: Projects }) {
   return (
-    <Card className="w-full max-w-sm overflow-hidden">
+    <Card className="flex flex-col w-full max-w-sm overflow-hidden">
       <div className="relative">
         <Image
           height={225}
@@ -39,7 +39,7 @@ export default function CardProject({ project }: { project: Projects }) {
           </h2>
         </div>
       </div>
-      <CardContent className="space-y-2 pt-2">
+      <CardContent className="space-y-2 pt-2 flex-1">
         <p className="text-sm text-muted-foreground">{project.description}</p>
         <div className="flex flex-wrap gap-1">
           {project.tecnolgies.map((tech, index) => (
@@ -82,7 +82,7 @@ export default function CardProject({ project }: { project: Projects }) {
               className={cn(!!project.url ? 'cursor-not-allowed' : '')}
               target="_blank"
             >
-              <Button size="sm" variant="default" disabled={!project.repoUrl}>
+              <Button size="sm" variant="default">
                 <ExternalLink className="w-4 h-4 mr-2" />
                 View Project
               </Button>

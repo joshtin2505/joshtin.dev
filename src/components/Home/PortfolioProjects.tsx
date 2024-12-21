@@ -8,7 +8,7 @@ function ProjectsPortfolio() {
         <span className="text-red-500 text-3xl sm:text-4xl">&bull;</span>
         Projects
       </h2>
-      <div className="grid place-items-center">
+      <div className="flex gap-4 flex-wrap justify-center">
         {projects.length !== 0 ? (
           projects.map((project) => {
             return <CardProject key={project.name} project={project} />

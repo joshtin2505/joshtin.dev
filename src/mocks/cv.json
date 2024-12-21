@@ -241,7 +241,7 @@
       "description": "Urbanestia es una plataforma que ofrece a sus usarios la posibilidad de encontrar, comprar u arrendar porpiedades de la manera más fácil, rápida y segura.",
       "highlights": ["Real State", "Buy","Rent","Sell", "Web App"],
       "tecnolgies": ["Typescript", "React", "Tailwind", "Next.js"],
-      "img": [""],
+      "img": ["/mockups/urbanestia.png"],
       "url": "https://urbanestia.co/",
       "repoUrl": null
     },
