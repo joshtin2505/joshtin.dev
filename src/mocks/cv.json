@@ -251,8 +251,8 @@
       "description": "Diseñado para ahorrar tiempo en la creación de carpetas y archivos. Pudes usarlo al iniciar un proyecto y al agregar funcionalidad de creación de carpetas y archivos a su app.",
       "highlights": ["Save time", "Easy to use", "Open Source"],
       "tecnolgies": ["Typescript"],
-      "img": ["https://bcfiles.vercel.app/ogImg.png"],
-      "url": "https://bcfiles.vercel.app/",
+      "img": ["https://bcfiles.joshtin.me/ogImg.png"],
+      "url": "https://bcfiles.joshtin.me/",
       "repoUrl": "https://github.com/joshtin2505/bc-files"
     }
   ],

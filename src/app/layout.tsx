@@ -17,7 +17,61 @@ const geistMono = localFont({
 
 export const metadata: Metadata = {
   title: 'Joshtin.dev',
-  description: "I'm Justin castro perez and this is my Web portfolio and blog"
+  description: "I'm Justin castro perez and this is my Web portfolio and blog",
+  twitter: {
+    title: 'Joshtin.dev',
+    description:
+      "I'm Justin castro perez and this is my Web portfolio and blog",
+    creator: '@joshtindev',
+    creatorId: 'joshtindev',
+    site: 'joshtin.me'
+  },
+  facebook: {
+    admins: 'joshtindev'
+  },
+  openGraph: {
+    type: 'website',
+    locale: 'en_US',
+    url: 'https://joshtin.me',
+    title: 'Joshtin.dev',
+    description:
+      "I'm Justin castro perez and this is my Web portfolio and blog",
+    siteName: 'Joshtin.dev',
+    images: [
+      {
+        url: 'https://joshtin.me/mockups/joshtinc.png',
+        width: 1920,
+        height: 1080,
+        alt: 'Joshtin.dev'
+      }
+    ],
+    countryName: 'colombia',
+    emails: 'justincastro2505@gmail.com',
+    phoneNumbers: '+57 3185003169'
+  },
+  authors: [{ name: 'Justin Castro Perez', url: 'https://joshtin.me' }],
+  creator: 'Justin Castro Perez',
+  generator: 'Joshtin.dev',
+  keywords: [
+    'justin',
+    'castro',
+    'perez',
+    'joshtindev',
+    'joshtin.dev',
+    'joshtin.me',
+    'justin castro perez',
+    'web',
+    'developer',
+    'blog',
+    'joshtin portfolio',
+    'joshtin dev portfolio',
+    'portfolio',
+    'react',
+    'nextjs',
+    'tailwindcss',
+    'typescript'
+  ],
+  robots: 'index, follow'
 }
 
 export default function RootLayout({

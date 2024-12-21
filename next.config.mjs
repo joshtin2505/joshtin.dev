@@ -22,7 +22,7 @@ const nextConfig = {
       },
       {
         protocol: 'https',
-        hostname: 'bcfiles.vercel.app',
+        hostname: 'bcfiles.joshtin.me',
         port: '',
         pathname: '/**'
       }
