@@ -233,7 +233,7 @@
         "Backend"
       ]
     },
-        {
+    {
       "name": "Supabase",
       "level": "Middle",
       "keywords": [
@@ -253,7 +253,7 @@
         "Backend"
       ]
     },
-        {
+    {
       "name": "AWS",
       "level": "Middle",
       "keywords": [
@@ -298,7 +298,8 @@
       "name": "Java",
       "level": "Middle",
       "keywords": ["Desarrollo Web", "Frontend", "JavaScript Library", "UI"]
-    }, {
+    },
+    {
       "name": "Amgular",
       "level": "Middle",
       "keywords": ["Desarrollo Web", "Frontend", "JavaScript Library", "UI"]
@@ -319,7 +320,7 @@
       "name": "Urbanestia",
       "isActive": false,
       "description": "Urbanestia es una plataforma que ofrece a sus usarios la posibilidad de encontrar, comprar u arrendar porpiedades de la manera más fácil, rápida y segura.",
-      "highlights": ["Real State", "Buy","Rent","Sell", "Web App"],
+      "highlights": ["Real State", "Buy", "Rent", "Sell", "Web App"],
       "tecnolgies": ["Typescript", "React", "Tailwind", "Next.js"],
       "img": ["/mockups/urbanestia.png"],
       "url": "https://urbanestia.co/",
@@ -335,18 +336,17 @@
       "url": "https://bcfiles.joshtin.me/",
       "repoUrl": "https://github.com/joshtin2505/bc-files"
     },
-        {
+    {
       "name": "Sistema de Gestión Académica",
-      
-          "isActive": true,
-      "date": "2022-Present",
+
+      "isActive": true,
       "description": "App web fullstack con React, Node.js, Express, TypeScript, TailwindCSS, Supabase, JWT y OAuth2. Integré agentes IA para análisis de datos y optimización de procesos.",
-          "highlights": ["Developing"],
-          "tecnolgies": ["TS", "Next.js", "Tailwindcss"],
-           "img": [""],
+      "highlights": ["Developing"],
+      "tecnolgies": ["TS", "Next.js", "Tailwindcss"],
+      "img": [""],
       "url": "",
       "repoUrl": null
-    },
+    }
   ],
   "toolsIUse": [
     {
@@ -424,6 +424,5 @@
       "url": "https://www.npmjs.com/",
       "description": "NPM is the package manager for JavaScript."
     }
-    
   ]
 }
