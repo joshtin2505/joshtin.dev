@@ -43,12 +43,12 @@ function CommantPalette({
   return (
     <>
       <CommandDialog
-        // className="print:hidden w-96 dark:bg-neutral-900/50 border dark:border-neutral-800 backdrop-blur p-2 rounded-md fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 flex flex-col gap-2  z-40"
+        // className="print:hidden w-96 dark:bg-neutral-900/50 border dark:border-neutral-800 backdrop-blur-sm p-2 rounded-md fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 flex flex-col gap-2  z-40"
         open={open}
         onOpenChange={setOpen}
       >
         <CommandInput
-          className="outline-none w-full bg-transparent h-11 px-2 text-white/80 border-b border-white/20 placeholder:bg-white/10 placeholder:p-1 placeholder:px-2 placeholder:rounded "
+          className="outline-hidden w-full bg-transparent h-11 px-2 text-white/80 border-b border-white/20 placeholder:bg-white/10 placeholder:p-1 placeholder:px-2 placeholder:rounded "
           placeholder="Type a command or search"
         />
         <CommandList>

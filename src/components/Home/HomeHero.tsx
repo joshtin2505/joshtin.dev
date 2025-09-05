@@ -11,7 +11,7 @@ function HomeHero() {
   const { basics } = cvJson
 
   return (
-    <section className="w-full dark:bg-[url('/BgDarkHero.png')] bg-[url('/BgLightHero.png')] bg-cover bg-center bg-no-repeat relative before:absolute before:inset-0 before:bg-gradient-to-b before:from-transparent dark:before:to-black before:to-white min-h-[calc(100vh-69px)]">
+    <section className="w-full dark:bg-[url('/BgDarkHero.png')] bg-[url('/BgLightHero.png')] bg-cover bg-center bg-no-repeat relative before:absolute before:inset-0 before:bg-linear-to-b before:from-transparent dark:before:to-black before:to-white min-h-[calc(100vh-69px)]">
       <div className=" max-w-5xl mx-auto lg:px-0 sm:px-5 py-8 relative z-10 h-full">
         <div className="md:block flex flex-col scale-75 sm:scale-100 ">
           <header className="flex items-center md:justify-between justify-center">

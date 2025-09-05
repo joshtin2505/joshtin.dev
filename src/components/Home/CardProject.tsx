@@ -21,7 +21,7 @@ export default function CardProject({ project }: { project: Projects }) {
           alt={project.name}
           className="w-full h-56 object-cover"
         />
-        <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-background to-background/0 p-4">
+        <div className="absolute bottom-0 left-0 right-0 bg-linear-to-t from-background to-background/0 p-4">
           <h2 className="text-lg font-semibold text-foreground">
             {project.name}
             <strong

@@ -46,7 +46,7 @@ function NavBar() {
   }, [])
 
   return (
-    <header className="top-0 w-full h-auto print:hidden sticky backdrop-blur-md backdrop-saturate-[180%] z-30 ">
+    <header className="top-0 w-full h-auto print:hidden sticky backdrop-blur-md backdrop-saturate-180 z-30 ">
       <nav className="flex items-center px-4  justify-between border-b dark:border-b-neutral-800 h-[69px] relative">
         <Logo />
         <button
@@ -58,7 +58,7 @@ function NavBar() {
         <div className="flex items-center">
           <ul
             className={
-              'flex-col absolute dark:sm:bg-transparent dark:bg-black/80 items-start border sm:border-0 dark:border-neutral-800 rounded  backdrop-blur-md sm:backdrop-blur-none z-20 -bottom-[135px] right-1 sm:static sm:flex-row justify-center sm:justify-between sm:items-center p-4 w-auto gap-3 sm:flex [&>li]:bg-neutral-900 sm:[&>li]:bg-transparent [&>li]:p-1 sm:[&>li]:p-0 [&>li]:rounded [&>li]:transition-colors  dark:hover:[&>li]:bg-neutral-700 dark:sm:hover:[&>li]:bg-transparent ' +
+              'flex-col absolute dark:sm:bg-transparent dark:bg-black/80 items-start border sm:border-0 dark:border-neutral-800 rounded  backdrop-blur-md sm:backdrop-blur-none z-20 -bottom-[135px] right-1 sm:static sm:flex-row justify-center sm:justify-between sm:items-center p-4 w-auto gap-3 sm:flex [&>li]:bg-neutral-900 sm:[&>li]:bg-transparent [&>li]:p-1 sm:[&>li]:p-0 [&>li]:rounded [&>li]:transition-colors  dark:[&>li]:hover:bg-neutral-700 dark:sm:[&>li]:hover:bg-transparent ' +
               (!dropdown ? 'hidden' : 'flex')
             }
           >
@@ -98,8 +98,8 @@ function NavBar() {
           </ul>
           <div className="flex items-center sm:hidden">
             <DropdownMenu>
-              <DropdownMenuTrigger className="outline-none">
-                <AlignJustifyIcon className="size-5 outline-none" />
+              <DropdownMenuTrigger className="outline-hidden">
+                <AlignJustifyIcon className="size-5 outline-hidden" />
               </DropdownMenuTrigger>
               <DropdownMenuContent>
                 <DropdownMenuItem>

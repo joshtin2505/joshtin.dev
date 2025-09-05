@@ -10,7 +10,7 @@ function Footer() {
   return (
     <footer className="print:hidden w-full dark:bg-black border dark:border-neutral-900 dark:text-neutral-200 py-4 flex flex-col ">
       <div className="w-full">
-        <div className="max-w-screen-xl mx-auto px-4 py-5 flex sm:justify-between flex-col-reverse justify-center sm:flex-row ">
+        <div className="max-w-(--breakpoint-xl) mx-auto px-4 py-5 flex sm:justify-between flex-col-reverse justify-center sm:flex-row ">
           <div className="flex items-center gap-3 justify-center md:justify-normal">
             <h5 className="font-mono-mono capitalize">Contact me :3</h5>
             <ul className="flex gap-2">

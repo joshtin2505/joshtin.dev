@@ -13,7 +13,7 @@ function Articles() {
       <ul className="flex gap-2 w-auto mx-auto py-2">
         {[0, 1, 2, 3].map((articulo) => (
           <li key={articulo}>
-            <figure className="p-2 dark:bg-neutral-800/50 backdrop-blur rounded w-60">
+            <figure className="p-2 dark:bg-neutral-800/50 backdrop-blur-sm rounded w-60">
               <div className="w-full grid place-items-center dark:bg-neutral-700 rounded h-28">
                 <ImageIcon size={32} />
               </div>

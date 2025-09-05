@@ -11,7 +11,7 @@ function ToolsIUse() {
       <ul className="flex flex-wrap gap-2 justify-center">
         {cvMock.toolsIUse.map((tool) => (
           <li
-            className="border dark:border-neutral-800 p-2 rounded max-w-60 dark:hover:bg-neutral-800/50 dark:bg-black/40 backdrop-blur transition duration-200 hover:z-50 "
+            className="border dark:border-neutral-800 p-2 rounded max-w-60 dark:hover:bg-neutral-800/50 dark:bg-black/40 backdrop-blur-sm transition duration-200 hover:z-50 "
             key={tool.name}
           >
             <h5>
