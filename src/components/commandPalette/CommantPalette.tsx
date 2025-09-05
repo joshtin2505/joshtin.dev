@@ -11,7 +11,7 @@ import {
 } from '@/components/ui/command'
 import { usePathname } from 'next/navigation'
 
-import { SVGProps, useEffect, useState } from 'react'
+import { SVGProps, useEffect, useState, type JSX } from 'react';
 
 function CommantPalette({
   socials

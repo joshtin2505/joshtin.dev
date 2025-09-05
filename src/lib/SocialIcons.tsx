@@ -1,5 +1,5 @@
 import { Github, LinkedIn, Npm, X } from '@/components/icon'
-import { SVGProps } from 'react'
+import { SVGProps, type JSX } from 'react';
 
 export const SOCIAL_ICONS: Record<
   string,
