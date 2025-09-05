@@ -6,7 +6,7 @@
     "email": "justincastro2505@gmail.com",
     "phone": "+57 3185003169",
     "url": "https://joshtin.dev",
-    "summary": "Actualmente curso el sexto semestre de Ingeniería en Sistemas. Tengo una buena fundacion en desarrollo web y de software. Me he desempeñado como Desarrollador Web en diferentes proyectos, personales, laborales y universitarios. Me apasiona profundizar en nuevos conocimientos. Cada día busco aprender más y sumergirme en el desarrollo de software.",
+    "summary": "Desarrollador de software con énfasis en desarrollo web frontend y experiencia en creación de aplicaciones web fullstack, gestión de infraestructuras en la nube y soluciones tecnológicas adaptadas a las necesidades del usuario. Me destaco por aprender con rapidez, proponer mejoras constantes y trabajar con enfoque estratégico y colaborativo. Me motiva desarrollar productos innovadores que generen impacto real, siempre buscando crecer profesional y personalmente.",
     "location": {
       "address": "",
       "postalCode": "130004",
@@ -39,13 +39,59 @@
   },
   "work": [
     {
-      "name": "Nucleux S.A.S",
-      "position": "Desarrrollador Web Fullstack & Administrador de Servicios Web",
-      "url": "https://github.com/joshtin2505/lccp-ecommerce",
-      "startDate": "2024-5-17",
+      "name": "Consultor y Desarrollador de Soluciones Tecnológicas (Freelance)",
+      "position": "Consultor y Desarrollador Part-Time",
+      "url": "/",
+      "startDate": "2023-08-01",
       "endDate": null,
-      "summary": "Desarrollo varias aplicaciones web para la empresa Nucleux, algunas de las cuales se unifican en una plataforma SaaS, mientras que otras operan de manera independiente. Además, administro los servicios web de la empresa, gestiono la implementación de sitios web para sus clientes, proporciono soporte a los clientes y me encargo de su mantenimiento, asegurando un rendimiento óptimo.",
-      "highlights": ["Desarrollo de Aplicaciones Web", "Gestión de Proyectos", "Capacitación y Soporte"]
+      "summary": "Brindo consultoría y desarrollo tecnológico para microempresas, automatizando flujos de trabajo y diseñando bases de datos. También colaboro con desarrolladores y empresas en el diseño y desarrollo de módulos según necesidades específicas.",
+      "highlights": [
+        "Automatización de flujos con tecnología",
+        "Diseño de bases de datos",
+        "Desarrollo de módulos en Typesense, Salesforce, Next.js, Node.js"
+      ]
+    },
+    {
+      "name": "Facture by Estela",
+      "position": "Aprendiz de Desarrollo",
+      "url": "https://estela.com",
+      "startDate": "2025-01-01",
+      "endDate": "2025-07-01",
+      "summary": "Desarrollé funcionalidades y di mantenimiento a un portal ETL para reportes de consumo de clientes. Además, realicé mantenimiento a plantillas PDF para facturación electrónica y utilicé tecnologías como Cursor, MCP y Angular durante mi proceso.",
+      "highlights": [
+        "Optimización de tiempos de consulta a BD y APIs",
+        "Mantenimiento de plantillas PDF FRX para facturación electrónica",
+        "Uso de Cursor como IDE y MCP para IA",
+        "Desarrollo con Angular para componentes SaaS"
+      ]
+    },
+    {
+      "name": "Nucleux SAS",
+      "position": "Desarrollador FullStack",
+      "url": "agencianucleux.com",
+      "startDate": "2024-06-01",
+      "endDate": "2024-12-31",
+      "summary": "Lideré el desarrollo de Nucleux Panels, un CRM SaaS, modernizando su base de código y migrando la arquitectura a microservicios y microfrontends. Además, mantuve y optimicé sitios WordPress, administré infraestructura cloud y desarrollé extensiones de Google.",
+      "highlights": [
+        "Migración a Next.js, TypeScript, Node.js y NestJS",
+        "Integración de GraphQL y Auth0",
+        "Optimización de APIs REST con screaming architecture",
+        "Mantenimiento y seguridad en WordPress con Cloudflare",
+        "Administración de AWS (EC2, Lambda, API Gateway), Vercel y Hostinger"
+      ]
+    },
+    {
+      "name": "La Casita de Papel",
+      "position": "Desarrollador FullStack Freelance",
+      "url": "https://lacasitadepapel.com",
+      "startDate": "2022-11-01",
+      "endDate": "2024-06-30",
+      "summary": "Diseñé y desarrollé un sistema web de inventario con React, Node.js y PostgreSQL, planificando su escalabilidad a e-commerce. Además, desarrollé y mantengo su landing page corporativa, optimizada para SEO y actualizada constantemente.",
+      "highlights": [
+        "Aplicativo web de inventario de productos",
+        "Prototipo de funcionalidades e-commerce (carrito, checkout, órdenes)",
+        "Landing page corporativa con Next.js y TailwindCSS"
+      ]
     }
   ],
   "volunteer": [
@@ -188,6 +234,36 @@
       ]
     },
     {
+      "name": "Supabase",
+      "level": "Middle",
+      "keywords": [
+        "Bases de Datos",
+        "SQL",
+        "Almacenamiento de Datos",
+        "Backend"
+      ]
+    },
+    {
+      "name": ".Net",
+      "level": "Middle",
+      "keywords": [
+        "Bases de Datos",
+        "SQL",
+        "Almacenamiento de Datos",
+        "Backend"
+      ]
+    },
+    {
+      "name": "AWS",
+      "level": "Middle",
+      "keywords": [
+        "Bases de Datos",
+        "SQL",
+        "Almacenamiento de Datos",
+        "Backend"
+      ]
+    },
+    {
       "name": "Git",
       "level": "Middle",
       "keywords": ["Control de Versiones", "Colaboración", "Código Fuente"]
@@ -222,6 +298,11 @@
       "name": "Java",
       "level": "Middle",
       "keywords": ["Desarrollo Web", "Frontend", "JavaScript Library", "UI"]
+    },
+    {
+      "name": "Amgular",
+      "level": "Middle",
+      "keywords": ["Desarrollo Web", "Frontend", "JavaScript Library", "UI"]
     }
   ],
   "languages": [
@@ -237,9 +318,9 @@
   "projects": [
     {
       "name": "Urbanestia",
-      "isActive": true,
+      "isActive": false,
       "description": "Urbanestia es una plataforma que ofrece a sus usarios la posibilidad de encontrar, comprar u arrendar porpiedades de la manera más fácil, rápida y segura.",
-      "highlights": ["Real State", "Buy","Rent","Sell", "Web App"],
+      "highlights": ["Real State", "Buy", "Rent", "Sell", "Web App"],
       "tecnolgies": ["Typescript", "React", "Tailwind", "Next.js"],
       "img": ["/mockups/urbanestia.png"],
       "url": "https://urbanestia.co/",
@@ -254,6 +335,17 @@
       "img": ["https://bcfiles.joshtin.me/ogImg.png"],
       "url": "https://bcfiles.joshtin.me/",
       "repoUrl": "https://github.com/joshtin2505/bc-files"
+    },
+    {
+      "name": "Sistema de Gestión Académica",
+
+      "isActive": true,
+      "description": "App web fullstack con React, Node.js, Express, TypeScript, TailwindCSS, Supabase, JWT y OAuth2. Integré agentes IA para análisis de datos y optimización de procesos.",
+      "highlights": ["Developing"],
+      "tecnolgies": ["TS", "Next.js", "Tailwindcss"],
+      "img": [""],
+      "url": "",
+      "repoUrl": null
     }
   ],
   "toolsIUse": [
@@ -332,6 +424,5 @@
       "url": "https://www.npmjs.com/",
       "description": "NPM is the package manager for JavaScript."
     }
-    
   ]
 }
