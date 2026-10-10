@@ -1,8 +1,6 @@
 'use client'
 import Link from 'next/link'
-import './NavBar.css'
 import { useCallback, useEffect, useState } from 'react'
-import './NavBar.css'
 import Logo from '../logo/Logo'
 import { ModeToggle } from '../Theme/ModeToggle'
 import {
@@ -12,25 +10,16 @@ import {
   DropdownMenuTrigger
 } from '../ui/dropdown-menu'
 import { AlignJustifyIcon } from 'lucide-react'
-// import { FaBars } from "react-icons/fa6"
 
 function NavBar() {
-  const [dropdown, setDropdown] = useState(false)
   const [os, setOs] = useState('')
+
   useEffect(() => {
     const userAgent = window.navigator.userAgent
-    if (userAgent.includes('Win')) {
-      setOs('Windows')
-    } else if (userAgent.includes('Mac')) {
+    if (userAgent.includes('Mac')) {
       setOs('MacOS')
-    } else if (userAgent.includes('Linux')) {
-      setOs('Linux')
-    } else if (userAgent.includes('Android')) {
-      setOs('Android')
-    } else if (userAgent.includes('iOS')) {
-      setOs('iOS')
     } else {
-      setOs('Unknown')
+      setOs('Windows')
     }
   }, [])
 
@@ -41,84 +30,76 @@ function NavBar() {
       ctrlKey: true,
       key: 'k'
     })
-
     document.dispatchEvent(event)
   }, [])
 
   return (
-    <header className="top-0 w-full h-auto print:hidden sticky backdrop-blur-md backdrop-saturate-180 z-30 ">
-      <nav className="flex items-center px-4  justify-between border-b dark:border-b-neutral-800 h-[69px] relative">
+    <header className="top-0 w-full h-auto print:hidden sticky backdrop-blur-md backdrop-saturate-180 z-30 bg-background/80 border-b border-border">
+      <nav aria-label="Navegación principal" className="max-w-5xl mx-auto flex items-center px-4 justify-between h-[69px]">
         <Logo />
-        <button
-          className="sm:hidden transition dark:text-neutral-500 dark:hover:text-neutral-200 hover:scale-110 dark:active:text-neutral-300 dark:active:scale-100"
-          onClick={() => setDropdown((prevState) => !prevState)}
-        >
-          {/* <FaBars size={24} /> */}
-        </button>
-        <div className="flex items-center">
-          <ul
-            className={
-              'flex-col absolute dark:sm:bg-transparent dark:bg-black/80 items-start border sm:border-0 dark:border-neutral-800 rounded  backdrop-blur-md sm:backdrop-blur-none z-20 -bottom-[135px] right-1 sm:static sm:flex-row justify-center sm:justify-between sm:items-center p-4 w-auto gap-3 sm:flex [&>li]:bg-neutral-900 sm:[&>li]:bg-transparent [&>li]:p-1 sm:[&>li]:p-0 [&>li]:rounded [&>li]:transition-colors  dark:[&>li]:hover:bg-neutral-700 dark:sm:[&>li]:hover:bg-transparent ' +
-              (!dropdown ? 'hidden' : 'flex')
-            }
+
+        <div className="flex items-center gap-2 sm:gap-4">
+          <button
+            type="button"
+            className="hidden items-center w-44 justify-between md:flex bg-neutral-100 hover:bg-neutral-200 dark:bg-neutral-900 dark:hover:bg-neutral-800 transition rounded-md px-2.5 py-1.5 text-xs text-muted-foreground border border-border"
+            onClick={simulateCtrlK}
+            aria-label="Buscar en la paleta de comandos (Ctrl+K)"
           >
+            <span>Buscar...</span>
+            <kbd className="bg-neutral-200 dark:bg-neutral-800 text-neutral-600 dark:text-neutral-300 rounded px-1.5 py-0.5 font-mono text-[10px]">
+              {os === 'MacOS' ? 'Cmd + K' : 'Ctrl + K'}
+            </kbd>
+          </button>
+
+          <ul className="hidden sm:flex items-center gap-5 text-sm font-medium text-muted-foreground">
             <li>
-              <button
-                className="hidden items-center w-48 justify-between md:flex bg-neutral-100 dark:bg-neutral-900 rounded pl-2 py-1"
-                onClick={simulateCtrlK}
+              <Link
+                className="transition hover:text-foreground"
+                href="/#experiencia"
               >
-                <span className="text-neutral-500">Serch...</span>
-                {os === 'MacOS' ? (
-                  <kbd className="bg-neutral-500/30 text-neutral-400/90 rounded-md px-1 scale-95">
-                    Cmd + K
-                  </kbd>
-                ) : (
-                  <kbd className="bg-neutral-500/30 text-neutral-400/90 rounded-md px-1 scale-75">
-                    Ctrl + K
-                  </kbd>
-                )}
-              </button>
-            </li>
-            <li>
-              <Link className="dark:hover:text-white" href="/curriculum">
-                Curriculum
+                Experiencia
               </Link>
             </li>
             <li>
               <Link
-                className="text-neutral-500 text-center flex gap-1"
-                href="/blog"
+                className="transition hover:text-foreground"
+                href="/#proyectos"
               >
-                Blog
-                <span className="border border-neutral-400 bg-neutral-500/10 rounded-full px-2 text-sm text-center">
-                  comming
-                </span>
+                Proyectos
+              </Link>
+            </li>
+            <li>
+              <Link
+                className="transition hover:text-foreground"
+                href="/curriculum"
+              >
+                Curriculum
               </Link>
             </li>
           </ul>
+
           <div className="flex items-center sm:hidden">
             <DropdownMenu>
-              <DropdownMenuTrigger className="outline-hidden">
-                <AlignJustifyIcon className="size-5 outline-hidden" />
+              <DropdownMenuTrigger
+                className="p-2 rounded-md hover:bg-neutral-100 dark:hover:bg-neutral-800 transition outline-none"
+                aria-label="Abrir menú de navegación"
+              >
+                <AlignJustifyIcon className="size-5" />
               </DropdownMenuTrigger>
-              <DropdownMenuContent>
-                <DropdownMenuItem>
-                  <Link href="/curriculum">Curriculum</Link>
+              <DropdownMenuContent align="end" className="w-48">
+                <DropdownMenuItem asChild>
+                  <Link href="/#experiencia">Experiencia</Link>
                 </DropdownMenuItem>
-                <DropdownMenuItem>
-                  <Link
-                    className="text-neutral-500 text-center flex gap-1"
-                    href="/blog"
-                  >
-                    Blog
-                    <span className="border border-neutral-400 bg-neutral-500/10 rounded-full px-2 text-sm text-center">
-                      comming
-                    </span>
-                  </Link>
+                <DropdownMenuItem asChild>
+                  <Link href="/#proyectos">Proyectos</Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <Link href="/curriculum">Curriculum</Link>
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
           </div>
+
           <ModeToggle />
         </div>
       </nav>
