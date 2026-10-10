@@ -11,14 +11,19 @@ function Projects() {
             <article className="flex flex-col p-4 rounded-md border dark:border-neutral-600 gap-4 h-full">
               <header className="flex-1">
                 <h3 className="mb-2 flex gap-1">
-                  <Link
-                    className="dark:text-neutral-100 hover:underline dark:hover:text-neutral-300"
-                    href={url}
-                    target="_blank"
-                    title={`Ver el proyecto ${name}`}
-                  >
-                    {name}
-                  </Link>
+                  {url ? (
+                    <Link
+                      className="dark:text-neutral-100 hover:underline dark:hover:text-neutral-300"
+                      href={url}
+                      target="_blank"
+                      rel="noreferrer noopener"
+                      title={`Ver el proyecto ${name}`}
+                    >
+                      {name}
+                    </Link>
+                  ) : (
+                    <span className="dark:text-neutral-100">{name}</span>
+                  )}
                   {isActive && <span className="scale-150"> &#8226; </span>}
                 </h3>
                 <p className="text-sm text-muted-foreground">{description}</p>

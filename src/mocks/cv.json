@@ -4,8 +4,8 @@
     "label": "Software Developer (Frontend - Backend)",
     "image": "https://lh3.googleusercontent.com/a/ACg8ocJ5sbxVO7ITlL9y5XCPJtk5LgLV_pTHKLpsXqzL341QUqKKPJuwXQ=s396-c-no",
     "email": "justincastro2505@gmail.com",
-    "phone": "+57 3185003169",
-    "url": "https://joshtin.dev",
+    "phone": "",
+    "url": "https://joshtin.tech",
     "summary": "Desarrollador de software con énfasis en desarrollo web frontend y experiencia en creación de aplicaciones web fullstack, gestión de infraestructuras en la nube y soluciones tecnológicas adaptadas a las necesidades del usuario. Me destaco por aprender con rapidez, proponer mejoras constantes y trabajar con enfoque estratégico y colaborativo. Me motiva desarrollar productos innovadores que generen impacto real, siempre buscando crecer profesional y personalmente.",
     "location": {
       "address": "",
@@ -107,21 +107,21 @@
   ],
   "education": [
     {
-      "institution": "Fundacion Univercitaria Tecnologico Comfenalco",
+      "institution": "Fundación Universitaria Tecnológico Comfenalco",
       "url": "https://tecnologicocomfenalco.edu.co/",
       "area": "Desarrollador de Software",
       "studyType": "Bachelor",
-      "startDate": "2022-01-024",
+      "startDate": "2022-01-24",
       "endDate": "2024-11-26",
       "score": "4.0",
       "courses": [""]
     },
     {
-      "institution": "Fundacion Univercitaria Tecnologico Comfenalco",
+      "institution": "Fundación Universitaria Tecnológico Comfenalco",
       "url": "https://tecnologicocomfenalco.edu.co/",
       "area": "Ingeniero de Sistemas",
       "studyType": "Bachelor",
-      "startDate": "2022-01-024",
+      "startDate": "2022-01-24",
       "endDate": null,
       "score": "4.0",
       "courses": [""]
@@ -300,7 +300,7 @@
       "keywords": ["Desarrollo Web", "Frontend", "JavaScript Library", "UI"]
     },
     {
-      "name": "Amgular",
+      "name": "Angular",
       "level": "Middle",
       "keywords": ["Desarrollo Web", "Frontend", "JavaScript Library", "UI"]
     }
@@ -319,9 +319,9 @@
     {
       "name": "Urbanestia",
       "isActive": false,
-      "description": "Urbanestia es una plataforma que ofrece a sus usarios la posibilidad de encontrar, comprar u arrendar porpiedades de la manera más fácil, rápida y segura.",
-      "highlights": ["Real State", "Buy", "Rent", "Sell", "Web App"],
-      "tecnolgies": ["Typescript", "React", "Tailwind", "Next.js"],
+      "description": "Plataforma inmobiliaria que ofrece a sus usuarios la posibilidad de encontrar, comprar o arrendar propiedades de manera ágil, segura y moderna.",
+      "highlights": ["Real Estate", "Search", "Rent & Buy", "Web App"],
+      "tecnolgies": ["TypeScript", "React", "Tailwind CSS", "Next.js"],
       "img": ["/mockups/urbanestia.png"],
       "url": "https://urbanestia.co/",
       "repoUrl": null
@@ -329,22 +329,21 @@
     {
       "name": "Creator Bundle Files",
       "isActive": true,
-      "description": "Diseñado para ahorrar tiempo en la creación de carpetas y archivos. Pudes usarlo al iniciar un proyecto y al agregar funcionalidad de creación de carpetas y archivos a su app.",
-      "highlights": ["Save time", "Easy to use", "Open Source"],
-      "tecnolgies": ["Typescript"],
+      "description": "Librería y herramienta de CLI diseñada para automatizar y acelerar la creación estructurada de carpetas y archivos en proyectos de software.",
+      "highlights": ["Open Source", "NPM Package", "CLI Tool", "TypeScript"],
+      "tecnolgies": ["TypeScript", "Node.js"],
       "img": ["https://bcfiles.joshtin.me/ogImg.png"],
       "url": "https://bcfiles.joshtin.me/",
       "repoUrl": "https://github.com/joshtin2505/bc-files"
     },
     {
       "name": "Sistema de Gestión Académica",
-
       "isActive": true,
-      "description": "App web fullstack con React, Node.js, Express, TypeScript, TailwindCSS, Supabase, JWT y OAuth2. Integré agentes IA para análisis de datos y optimización de procesos.",
-      "highlights": ["Developing"],
-      "tecnolgies": ["TS", "Next.js", "Tailwindcss"],
-      "img": [""],
-      "url": "",
+      "description": "Aplicación web fullstack con autenticación JWT, panel administrativo y agentes de IA para análisis de datos y optimización de flujos académicos.",
+      "highlights": ["FullStack", "AI Agents", "Supabase", "Next.js"],
+      "tecnolgies": ["TypeScript", "Next.js", "Tailwind CSS", "Supabase"],
+      "img": [],
+      "url": null,
       "repoUrl": null
     }
   ],
