@@ -1,25 +1,33 @@
 import cvJson from '@/mocks/cv.json'
 import CardProject from './CardProject'
+import { RocketIcon } from 'lucide-react'
+
 function ProjectsPortfolio() {
   const { projects } = cvJson
   return (
-    <section className="flex flex-col items-center gap-2 max-w-5xl mx-auto lg:px-0 px-3 min-h-dvh">
-      <h2 className="w-full text-start text-3xl sm:text-4xl mb-3 flex">
-        <span className="text-red-500 text-3xl sm:text-4xl">&bull;</span>
-        Projects
+    <section id="proyectos" className="max-w-5xl mx-auto px-4 py-16 scroll-mt-20">
+      <div className="flex items-center gap-2 mb-2 text-primary font-mono text-xs uppercase tracking-wider">
+        <RocketIcon className="size-4" />
+        <span>Portafolio</span>
+      </div>
+      <h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl mb-4">
+        Proyectos Destacados
       </h2>
-      <div className="flex gap-4 flex-wrap justify-center">
+      <p className="text-muted-foreground text-sm max-w-2xl mb-8 leading-relaxed font-sans">
+        Selección de aplicaciones web, herramientas y productos desarrollados con foco en rendimiento, escalabilidad y experiencia de usuario.
+      </p>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 justify-items-center">
         {projects.length !== 0 ? (
-          projects.map((project) => {
-            return <CardProject key={project.name} project={project} />
-          })
+          projects.map((project) => (
+            <CardProject key={project.name} project={project} />
+          ))
         ) : (
-          <div>
-            <h1>No projects</h1>
-          </div>
+          <p className="text-muted-foreground text-sm">No hay proyectos disponibles.</p>
         )}
       </div>
     </section>
   )
 }
+
 export default ProjectsPortfolio
