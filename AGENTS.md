@@ -110,6 +110,15 @@ Las skills residen en `.agents/skills/`:
 | Verificación final antes de cerrar tarea | `verification-before-completion` |
 | Diagnóstico de errores imprevistos | `systematic-debugging` |
 
+
+### 5.1 Subagentes Especializados del Proyecto
+
+Los subagentes residen documentados en `.agents/subagents/`:
+- **`accessibility-reviewer`**: Auditor de estándares WCAG 2.2 AA (foco, etiquetas accesibles, sin interactividad anidada).
+- **`seo-technical-auditor`**: Auditor de SEO técnico, canonicals, sitemap, robots y datos estructurados Schema.org.
+- **`tech-copywriter`**: Redactor de contenido técnico (Hero, biografía y proyectos orientados a impacto sin clichés de IA).
+- **`architect-code-reviewer`**: Gatekeeper de calidad que verifica el Definition of Done antes de integrar a `main`.
+
 ---
 
 ## 6. Definición de "Terminado" (Definition of Done)

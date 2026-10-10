@@ -55,24 +55,14 @@
       "skillPath": "skills/frontend-design/SKILL.md",
       "computedHash": "106acf230014cbb43ca34e6410371321b56ca742f9ee0442e8ec05bf02eb0384"
     },
-    "hyperframes-animation": {
-      "source": "heygen-com/hyperframes",
-      "sourceType": "github",
-      "skillPath": "skills/hyperframes-animation/SKILL.md",
-      "computedHash": "1fca72d17a4202929b3b99ec0078120e8eb10c2f6741b9ddc25802dfc49568e1"
-    },
+
     "nextjs-app-router-patterns": {
       "source": "wshobson/agents",
       "sourceType": "github",
       "skillPath": "plugins/frontend-mobile-development/skills/nextjs-app-router-patterns/SKILL.md",
       "computedHash": "3a46e9093baecb3a85819529ce05006f817663f48d9e872868c32ae6049c0d5c"
     },
-    "nextjs-best-practices": {
-      "source": "sickn33/agentic-awesome-skills",
-      "sourceType": "github",
-      "skillPath": "skills/nextjs-best-practices/SKILL.md",
-      "computedHash": "0a3dd1e299ea935e8f5435895d549a139c86a5c1152c85cc1ad5f0eab4d3d89c"
-    },
+
     "payload": {
       "source": "payloadcms/payload",
       "sourceType": "github",
@@ -97,12 +87,7 @@
       "skillPath": "skills/seo-audit/SKILL.md",
       "computedHash": "f321ae6d6959fcad4a9f65db8eb1548b981e3e85cb541050f94703ebacc6d39d"
     },
-    "setup-matt-pocock-skills": {
-      "source": "mattpocock/skills",
-      "sourceType": "github",
-      "skillPath": "skills/engineering/setup-matt-pocock-skills/SKILL.md",
-      "computedHash": "1114faf86d8658d6b3c729e7e604fbfecdee3fa112f23c4889463e87da662aec"
-    },
+
     "shadcn-ui": {
       "source": "giuseppe-trisciuoglio/developer-kit",
       "sourceType": "github",
