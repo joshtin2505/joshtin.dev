@@ -1,3 +1,5 @@
+@reference "../../app/globals.css";
+
 .titleLogo {
   @apply font-mono inline-block relative;
 }

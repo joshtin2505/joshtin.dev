@@ -1,3 +1,5 @@
+@reference "../../app/globals.css";
+
 .name {
   display: flex;
   border-right: 4px solid;
@@ -25,31 +27,31 @@
 
 @keyframes rainbow {
   0% {
-    @apply text-red-500;
+    color: #ef4444;
   }
 
   16.6666666667% {
-    @apply text-orange-500;
+    color: #f97316;
   }
 
   33.3333333333% {
-    @apply text-yellow-500;
+    color: #eab308;
   }
 
   50% {
-    @apply text-green-500;
+    color: #22c55e;
   }
 
   66.6666666667% {
-    @apply text-blue-500;
+    color: #3b82f6;
   }
 
   83.3333333333% {
-    @apply text-indigo-500;
+    color: #6366f1;
   }
 
   100% {
-    @apply text-purple-500;
+    color: #a855f7;
   }
 }
 

@@ -1,6 +1,6 @@
 'use client'
 import cvJson from '@/mocks/cv.json'
-import './KeyboardManager'
+import './KeyboardManager.css'
 
 import CommantPalette from './CommantPalette'
 import { SOCIAL_ICONS } from '@/lib/SocialIcons'
