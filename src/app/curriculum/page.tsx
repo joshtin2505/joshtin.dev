@@ -9,8 +9,9 @@ import { Metadata } from 'next'
 import React from 'react'
 
 export const metadata: Metadata = {
-  title: 'Justin Castro Perez - Web Developer (Frontend - Backend)',
-  description: "I'm Justin castro perez and this is my Web portfolio and blog"
+  title: 'Curriculum Vitae',
+  description:
+    'Hoja de vida y trayectoria profesional de Justin Castro Perez. Experiencia laboral, proyectos y habilidades técnicas en ingeniería de software.'
 }
 
 function Curriculum() {
