@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { useCallback, useEffect, useState } from 'react'
 import Logo from '../logo/Logo'
 import { ModeToggle } from '../Theme/ModeToggle'
+import { LanguageSwitcher } from './LanguageSwitcher'
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -71,6 +72,14 @@ function NavBar() {
             <li>
               <Link
                 className="transition hover:text-foreground"
+                href="/blog"
+              >
+                Blog
+              </Link>
+            </li>
+            <li>
+              <Link
+                className="transition hover:text-foreground"
                 href="/curriculum"
               >
                 Curriculum
@@ -94,12 +103,16 @@ function NavBar() {
                   <Link href="/#proyectos">Proyectos</Link>
                 </DropdownMenuItem>
                 <DropdownMenuItem asChild>
+                  <Link href="/blog">Blog</Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
                   <Link href="/curriculum">Curriculum</Link>
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
           </div>
 
+          <LanguageSwitcher />
           <ModeToggle />
         </div>
       </nav>
