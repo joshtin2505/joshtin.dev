@@ -198,9 +198,10 @@ localization: {
 
 ## 7. Almacenamiento de Archivos Multimedia (Media Storage)
 
-Dado que la aplicación se desplegará en **Vercel** (arquitectura serverless con disco efímero de solo lectura en producción):
-- **Entorno Local**: Almacenamiento en disco local (`public/media`) para desarrollo ágil y testing sin conexión.
-- **Producción (Vercel)**: Adaptador `@payloadcms/storage-vercel-blob` para guardar y servir imágenes, capturas y avatares con CDN global de Vercel de alta velocidad.
+Dado que la infraestructura de base de datos y almacenamiento se centraliza con **Neon**:
+- **Almacenamiento**: Neon Blob / Object Storage (compatible con S3).
+- **Adaptador en Payload**: `@payloadcms/storage-s3` configurado con el endpoint, bucket y credenciales S3 provistas por Neon (`S3_ENDPOINT`, `S3_BUCKET`, `S3_ACCESS_KEY_ID`, `S3_SECRET_ACCESS_KEY`).
+- **Entorno Local**: Soporte de fallback en disco local (`public/media`) si las credenciales de almacenamiento remoto no están configuradas temporalmente.
 
 ---
 
