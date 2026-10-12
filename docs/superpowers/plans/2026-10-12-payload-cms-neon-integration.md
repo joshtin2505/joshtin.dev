@@ -44,17 +44,17 @@
 - Consumes: Existing Next.js 15 App Router structure.
 - Produces: Isolated route groups `(frontend)` and `(payload)`.
 
-- [ ] **Step 1: Request dependency installation approval from user**
+- [x] **Step 1: Request dependency installation approval from user**
 Packages needed: `payload@^3.x`, `@payloadcms/next@^3.x`, `@payloadcms/db-postgres@^3.x`, `@payloadcms/storage-s3@^3.x`, `@payloadcms/richtext-lexical@^3.x`, `@payloadcms/ui@^3.x`, `graphql@^16.x`.
 
-- [ ] **Step 2: Reorganize App Router files into `src/app/(frontend)/` and `src/app/(payload)/`**
+- [x] **Step 2: Reorganize App Router files into `src/app/(frontend)/` and `src/app/(payload)/`**
 Ensure `src/app/(frontend)/layout.tsx` owns the public HTML/body structure and `src/app/(payload)/layout.tsx` configures Payload admin styles.
 
-- [ ] **Step 3: Verify TypeScript and compilation**
+- [x] **Step 3: Verify TypeScript and compilation**
 Run: `pnpm exec tsc --noEmit`
 Expected: PASS with 0 errors.
 
-- [ ] **Step 4: Commit**
+- [x] **Step 4: Commit**
 ```bash
 git add src/app/ package.json
 git commit -m "refactor(app): isolate App Router route groups for frontend and payload"
@@ -74,23 +74,23 @@ git commit -m "refactor(app): isolate App Router route groups for frontend and p
 - Consumes: `DATABASE_URI`, `PAYLOAD_SECRET`, `S3_ENDPOINT`, `S3_BUCKET`, `S3_ACCESS_KEY_ID`, `S3_SECRET_ACCESS_KEY`.
 - Produces: Exported Payload configuration object `buildConfig({ ... })`.
 
-- [ ] **Step 1: Implement `Users` collection**
+- [x] **Step 1: Implement `Users` collection**
 Define authentication collection with admin access rules.
 
-- [ ] **Step 2: Implement `Media` collection with S3 storage adapter configuration**
+- [x] **Step 2: Implement `Media` collection with S3 storage adapter configuration**
 Configure upload collection with responsive sizing, alt text field (localized), and `@payloadcms/storage-s3` integration.
 
-- [ ] **Step 3: Implement `payload.config.ts` with Neon Postgres adapter and localization**
+- [x] **Step 3: Implement `payload.config.ts` with Neon Postgres adapter and localization**
 Configure `@payloadcms/db-postgres` with SSL pooler connection, `localization: { locales: ['es', 'en'], defaultLocale: 'es', fallback: true }`, and Lexical editor.
 
-- [ ] **Step 4: Document required environment variables in `.env.example`**
+- [x] **Step 4: Document required environment variables in `.env.example`**
 Include `DATABASE_URI`, `PAYLOAD_SECRET`, and S3 parameters with explanatory comments.
 
-- [ ] **Step 5: Verify configuration types**
+- [x] **Step 5: Verify configuration types**
 Run: `pnpm exec tsc --noEmit`
 Expected: PASS with 0 errors.
 
-- [ ] **Step 6: Commit**
+- [x] **Step 6: Commit**
 ```bash
 git add src/payload.config.ts src/collections/Users.ts src/collections/Media.ts .env.example
 git commit -m "feat(payload): setup base configuration with postgres and media storage"
@@ -110,23 +110,23 @@ git commit -m "feat(payload): setup base configuration with postgres and media s
 - Consumes: `Media` collection, `localization`.
 - Produces: `Skills`, `Experiences`, and `Projects` collection configs added to `payload.config.ts`.
 
-- [ ] **Step 1: Implement `src/collections/Skills.ts`**
+- [x] **Step 1: Implement `src/collections/Skills.ts`**
 Fields: `name` (unique, required), `category` (`frontend`, `backend`, `cloud-devops`, `tools`, `mobile`), `iconKey`, `proficiency`.
 
-- [ ] **Step 2: Implement `src/collections/Experiences.ts`**
+- [x] **Step 2: Implement `src/collections/Experiences.ts`**
 Fields: `company`, `role` (localized), `startDate`, `endDate`, `isCurrent`, `summary` (localized), `achievements` (array of localized items), `techStack` (relationship to Skills), `companyUrl`.
 
-- [ ] **Step 3: Implement `src/collections/Projects.ts`**
+- [x] **Step 3: Implement `src/collections/Projects.ts`**
 Fields: `title` (localized), `slug` (native slug field), `summary` (localized), `description` (richText Lexical, localized), `featured`, `order`, `techStack` (relationship to Skills), `links` (liveUrl, githubUrl), `coverImage` (upload relation to Media), `gallery`, `versions: { drafts: true }`.
 
-- [ ] **Step 4: Register collections in `payload.config.ts`**
+- [x] **Step 4: Register collections in `payload.config.ts`**
 Add `Skills`, `Experiences`, and `Projects` to `collections` array.
 
-- [ ] **Step 5: Verify types**
+- [x] **Step 5: Verify types**
 Run: `pnpm exec tsc --noEmit`
 Expected: PASS with 0 errors.
 
-- [ ] **Step 6: Commit**
+- [x] **Step 6: Commit**
 ```bash
 git add src/collections/Skills.ts src/collections/Experiences.ts src/collections/Projects.ts src/payload.config.ts
 git commit -m "feat(payload): add Skills, Experiences, and Projects collections with i18n"
@@ -152,25 +152,25 @@ git commit -m "feat(payload): add Skills, Experiences, and Projects collections 
 - Consumes: Core collections and Lexical editor.
 - Produces: `Posts` collection, `Profile` global, and `HomePage` Page Builder with blocks.
 
-- [ ] **Step 1: Implement `src/collections/Posts.ts`**
+- [x] **Step 1: Implement `src/collections/Posts.ts`**
 Fields: `title` (localized), `slug` (native slug), `publishedAt`, `excerpt` (localized), `content` (richText Lexical, localized), `coverImage` (upload to Media), `tags`, `readTime`, `versions: { drafts: true }`.
 
-- [ ] **Step 2: Implement `src/globals/Profile.ts`**
+- [x] **Step 2: Implement `src/globals/Profile.ts`**
 Fields: `fullName`, `jobTitle` (localized), `shortBio` (localized), `fullBio` (richText, localized), `availability`, `email`, `socialLinks`, `avatar` (upload to Media).
 
-- [ ] **Step 3: Implement Page Builder blocks in `src/blocks/`**
+- [x] **Step 3: Implement Page Builder blocks in `src/blocks/`**
 Define schemas for `HeroBlock`, `ProjectsBlock`, `ExperienceBlock`, `TechStackBlock`, `BlogFeedBlock`, and `ContactBlock` with individual toggles (`enabled`) and localized titles/subtitles.
 
-- [ ] **Step 4: Implement `src/globals/HomePage.ts`**
+- [x] **Step 4: Implement `src/globals/HomePage.ts`**
 Field: `layout` (type: `blocks`, containing the 6 defined blocks).
 
-- [ ] **Step 5: Register Posts, Profile, and HomePage in `payload.config.ts`**
+- [x] **Step 5: Register Posts, Profile, and HomePage in `payload.config.ts`**
 
-- [ ] **Step 6: Verify types**
+- [x] **Step 6: Verify types**
 Run: `pnpm exec tsc --noEmit`
 Expected: PASS with 0 errors.
 
-- [ ] **Step 7: Commit**
+- [x] **Step 7: Commit**
 ```bash
 git add src/collections/Posts.ts src/globals/ src/blocks/ src/payload.config.ts
 git commit -m "feat(payload): add Posts blog collection, Profile global, and HomePage blocks"
@@ -188,7 +188,7 @@ git commit -m "feat(payload): add Posts blog collection, Profile global, and Hom
 - Consumes: `src/mocks/cv.json`, Payload Local API.
 - Produces: Populated database records in Neon for `Profile`, `Skills`, `Experiences`, `Projects`, and `HomePage`.
 
-- [ ] **Step 1: Implement `src/scripts/seed.ts`**
+- [x] **Step 1: Implement `src/scripts/seed.ts`**
 Map `cv.json` fields into Payload documents:
 - Insert/match Skills.
 - Insert Experiences with skill relations.
@@ -197,14 +197,14 @@ Map `cv.json` fields into Payload documents:
 - Create default `HomePage` block ordering matching current portfolio layout.
 Ensure execution is idempotent (skip duplicates if records already exist).
 
-- [ ] **Step 2: Add `"seed"` command in `package.json`**
+- [x] **Step 2: Add `"seed"` command in `package.json`**
 Command: `"seed": "tsx src/scripts/seed.ts"`
 
-- [ ] **Step 3: Verify TypeScript compilation**
+- [x] **Step 3: Verify TypeScript compilation**
 Run: `pnpm exec tsc --noEmit`
 Expected: PASS with 0 errors.
 
-- [ ] **Step 4: Commit**
+- [x] **Step 4: Commit**
 ```bash
 git add src/scripts/seed.ts package.json
 git commit -m "feat(seed): add automated migration script from cv.json to database"
@@ -228,21 +228,21 @@ git commit -m "feat(seed): add automated migration script from cv.json to databa
 - Consumes: Payload Local API queries with fallback to `cv.json` if database is unconfigured.
 - Produces: Dynamically rendered homepage based on the blocks ordered in Payload.
 
-- [ ] **Step 1: Implement `src/lib/payload/queries.ts` with graceful fallback**
+- [x] **Step 1: Implement `src/lib/payload/queries.ts` with graceful fallback**
 Functions: `getProfileData(locale)`, `getHomePageLayout(locale)`, `getProjectsData(locale)`, `getExperiencesData(locale)`, `getSkillsData()`, `getLatestPosts(locale)`.
 If `process.env.DATABASE_URI` is unset, return parsed data from `cv.json`.
 
-- [ ] **Step 2: Implement block components and `BlockRenderer.tsx`**
+- [x] **Step 2: Implement block components and `BlockRenderer.tsx`**
 Map block types (`hero`, `projects`, `experience`, `techStack`, `blogFeed`, `contact`) to modern UI components respecting the Bento Grid design.
 
-- [ ] **Step 3: Update `src/app/(frontend)/page.tsx` to render dynamic blocks**
+- [x] **Step 3: Update `src/app/(frontend)/page.tsx` to render dynamic blocks**
 Async Server Component reading locale and rendering `<BlockRenderer layout={layout} />`.
 
-- [ ] **Step 4: Run build check to verify fallback and rendering**
+- [x] **Step 4: Run build check to verify fallback and rendering**
 Run: `pnpm build`
 Expected: PASS with exit code 0.
 
-- [ ] **Step 5: Commit**
+- [x] **Step 5: Commit**
 ```bash
 git add src/lib/payload/ src/components/Home/blocks/ src/app/\(frontend\)/page.tsx
 git commit -m "feat(ui): implement dynamic Page Builder block renderer with resilient fallback"
@@ -262,22 +262,22 @@ git commit -m "feat(ui): implement dynamic Page Builder block renderer with resi
 - Consumes: `getLatestPosts`, `getPostBySlug` from `queries.ts`.
 - Produces: Public `/blog` index and `/blog/[slug]` article pages with metadata and structured data.
 
-- [ ] **Step 1: Implement `RichText.tsx` serializer**
+- [x] **Step 1: Implement `RichText.tsx` serializer**
 Render Lexical nodes into accessible semantic HTML styled with Tailwind Typography (`prose prose-invert`).
 
-- [ ] **Step 2: Implement `src/app/(frontend)/blog/page.tsx`**
+- [x] **Step 2: Implement `src/app/(frontend)/blog/page.tsx`**
 List published articles with cover image, tags, read time, excerpt, and publication date. Include empty state when no posts exist.
 
-- [ ] **Step 3: Implement `src/app/(frontend)/blog/[slug]/page.tsx`**
+- [x] **Step 3: Implement `src/app/(frontend)/blog/[slug]/page.tsx`**
 Dynamic article page with `generateMetadata`, JSON-LD `BlogPosting` structured data, back navigation, and RichText content.
 
-- [ ] **Step 4: Update `sitemap.ts` to include dynamic blog post URLs**
+- [x] **Step 4: Update `sitemap.ts` to include dynamic blog post URLs**
 
-- [ ] **Step 5: Run typecheck and build**
+- [x] **Step 5: Run typecheck and build**
 Run: `pnpm exec tsc --noEmit && pnpm build`
 Expected: PASS with 0 errors.
 
-- [ ] **Step 6: Commit**
+- [x] **Step 6: Commit**
 ```bash
 git add src/components/blog/ src/app/\(frontend\)/blog/ src/app/\(frontend\)/sitemap.ts
 git commit -m "feat(blog): implement blog list, article detail pages, and rich-text serializer"
@@ -296,19 +296,19 @@ git commit -m "feat(blog): implement blog list, article detail pages, and rich-t
 - Consumes: Locale state/cookie.
 - Produces: Interactive language switcher (`ES` / `EN`) in navigation and synced `/curriculum` page.
 
-- [ ] **Step 1: Implement accessible `LanguageSwitcher.tsx`**
+- [x] **Step 1: Implement accessible `LanguageSwitcher.tsx`**
 Accessible pill/toggle with `aria-label` and active indicator.
 
-- [ ] **Step 2: Integrate `LanguageSwitcher` into `NavBar.tsx`**
+- [x] **Step 2: Integrate `LanguageSwitcher` into `NavBar.tsx`**
 
-- [ ] **Step 3: Update `/curriculum/page.tsx` to read from Payload queries**
+- [x] **Step 3: Update `/curriculum/page.tsx` to read from Payload queries**
 Feed the CV sections from the centralized database instead of importing `cv.json` directly.
 
-- [ ] **Step 4: Run full Definition of Done verification**
+- [x] **Step 4: Run full Definition of Done verification**
 Run: `pnpm exec tsc --noEmit && pnpm lint && pnpm build`
 Expected: All commands exit cleanly with code 0.
 
-- [ ] **Step 5: Commit**
+- [x] **Step 5: Commit**
 ```bash
 git add src/components/nav/ src/app/\(frontend\)/curriculum/
 git commit -m "feat(i18n): add language switcher in navigation and sync curriculum data"
