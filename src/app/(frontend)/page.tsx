@@ -1,16 +1,35 @@
-import HomeHero from '@/components/Home/HomeHero'
-import ExperienceSection from '@/components/Home/ExperienceSection'
-import ProjectsPortfolio from '@/components/Home/PortfolioProjects'
-import TechStackSection from '@/components/Home/TechStackSection'
 import BasicLayout from '@/components/layouts/BasicLayout'
+import { BlockRenderer } from '@/components/Home/blocks/BlockRenderer'
+import {
+  getHomePageLayout,
+  getProfileData,
+  getProjectsData,
+  getExperiencesData,
+  getSkillsData,
+  getLatestPosts,
+} from '@/lib/payload/queries'
 
-export default function Home() {
+export default async function Home() {
+  const [layout, profile, projects, experiences, skillsGroups, posts] =
+    await Promise.all([
+      getHomePageLayout('es'),
+      getProfileData('es'),
+      getProjectsData('es', 6, true),
+      getExperiencesData('es', 5),
+      getSkillsData(),
+      getLatestPosts('es', 3),
+    ])
+
   return (
     <BasicLayout>
-      <HomeHero />
-      <ExperienceSection />
-      <ProjectsPortfolio />
-      <TechStackSection />
+      <BlockRenderer
+        layout={layout}
+        profile={profile}
+        projects={projects}
+        experiences={experiences}
+        skillsGroups={skillsGroups}
+        posts={posts}
+      />
     </BasicLayout>
   )
 }

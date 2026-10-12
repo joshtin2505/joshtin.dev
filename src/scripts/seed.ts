@@ -1,3 +1,4 @@
+/* eslint-disable no-console, @typescript-eslint/no-explicit-any */
 import { getPayload } from 'payload'
 import config from '../payload.config'
 import cvJson from '../mocks/cv.json'
@@ -84,7 +85,7 @@ async function runSeed() {
 
     if (!projectMap.has(slug)) {
       const matchedSkillIds: (string | number)[] = []
-      for (const t of (p as any).techStack || []) {
+      for (const t of (p as any).tecnolgies || []) {
         const id = skillMap.get(t.toLowerCase())
         if (id) matchedSkillIds.push(id)
       }
@@ -99,7 +100,7 @@ async function runSeed() {
           order: i,
           techStack: matchedSkillIds.length > 0 ? (matchedSkillIds as any) : undefined,
           liveUrl: p.url || undefined,
-          githubUrl: (p as any).github || undefined,
+          githubUrl: (p as any).repoUrl || undefined,
           _status: 'published',
         },
       })
