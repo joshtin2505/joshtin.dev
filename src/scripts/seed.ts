@@ -1,15 +1,19 @@
 /* eslint-disable no-console, @typescript-eslint/no-explicit-any */
+// @ts-expect-error - @next/env is provided by Next.js runtime
+import { loadEnvConfig } from '@next/env'
+loadEnvConfig(process.cwd())
+
 import { getPayload } from 'payload'
-import config from '../payload.config'
 import cvJson from '../mocks/cv.json'
 
 async function runSeed() {
   if (!process.env.DATABASE_URI) {
-    console.warn('⚠️  DATABASE_URI no está configurada en .env.local.')
+    console.warn('⚠️  DATABASE_URI no está configurada en .env o .env.local.')
     console.warn('👉 Para ejecutar el seed en Neon DB, configura DATABASE_URI y vuelve a ejecutar pnpm seed.')
     process.exit(0)
   }
 
+  const { default: config } = await import('../payload.config')
   console.log('🌱 Conectando con Payload CMS (Neon Postgres)...')
   const payload = await getPayload({ config })
 

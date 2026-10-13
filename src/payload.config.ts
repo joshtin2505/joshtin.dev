@@ -39,17 +39,20 @@ export default buildConfig({
       collections: {
         media: true,
       },
-      bucket: process.env.S3_BUCKET || '',
+      bucket: process.env.S3_BUCKET || process.env.AWS_BUCKET || 'default',
       config: {
         credentials: {
-          accessKeyId: process.env.S3_ACCESS_KEY_ID || '',
-          secretAccessKey: process.env.S3_SECRET_ACCESS_KEY || '',
+          accessKeyId: process.env.S3_ACCESS_KEY_ID || process.env.AWS_ACCESS_KEY_ID || '',
+          secretAccessKey: process.env.S3_SECRET_ACCESS_KEY || process.env.AWS_SECRET_ACCESS_KEY || '',
         },
-        region: process.env.S3_REGION || 'us-east-1',
-        endpoint: process.env.S3_ENDPOINT,
+        region: process.env.S3_REGION || process.env.AWS_REGION || 'us-east-2',
+        endpoint: process.env.S3_ENDPOINT || process.env.AWS_ENDPOINT_URL_S3,
         forcePathStyle: true,
       },
-      enabled: Boolean(process.env.S3_BUCKET && process.env.S3_ACCESS_KEY_ID),
+      enabled: Boolean(
+        (process.env.S3_ACCESS_KEY_ID || process.env.AWS_ACCESS_KEY_ID) &&
+        (process.env.S3_SECRET_ACCESS_KEY || process.env.AWS_SECRET_ACCESS_KEY)
+      ),
     }),
   ],
   secret: process.env.PAYLOAD_SECRET || 'dev-payload-secret-key-at-least-32-chars-long',
@@ -59,6 +62,7 @@ export default buildConfig({
   db: postgresAdapter({
     pool: {
       connectionString: process.env.DATABASE_URI || '',
+      ssl: process.env.DATABASE_URI?.includes('neon.tech') ? { rejectUnauthorized: false } : undefined,
     },
   }),
 })
