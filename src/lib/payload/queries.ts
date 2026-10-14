@@ -4,6 +4,49 @@ import cvJson from '@/mocks/cv.json'
 
 export type Locale = 'es' | 'en'
 
+export interface LandingData {
+  greeting?: string
+  fullName: string
+  jobTitle: string
+  shortBio: string
+  availability: string
+  location: string
+  avatarUrl?: string
+  heroSkills?: Array<{ id: string; name: string; iconKey?: string; category?: string }>
+  aboutTitle?: string
+  fullBio?: unknown
+  metrics?: Array<{ value: string; label: string }>
+  sectionsConfig?: {
+    projectsSection?: {
+      enabled?: boolean
+      title?: string
+      subtitle?: string
+      selectionMode?: 'featured' | 'manual'
+      manualProjects?: ProjectItem[]
+      limit?: number
+    }
+    skillsSection?: {
+      enabled?: boolean
+      title?: string
+      subtitle?: string
+      displayMode?: 'categories' | 'cloud'
+    }
+    contactSection?: {
+      enabled?: boolean
+      title?: string
+      callToAction?: string
+    }
+  }
+  email: string
+  socialLinks: Array<{ network: string; url: string; username?: string }>
+  cvFileUrl?: string
+  seo?: {
+    metaTitle?: string
+    metaDescription?: string
+    ogImageUrl?: string
+  }
+}
+
 export interface ProfileData {
   fullName: string
   jobTitle: string
@@ -66,6 +109,57 @@ export interface HomePageBlock {
 }
 
 // Fallback data builders from cv.json
+export function getFallbackLanding(): LandingData {
+  const b = cvJson.basics
+  return {
+    greeting: 'Hola, soy',
+    fullName: b.name,
+    jobTitle: b.label,
+    shortBio: b.summary,
+    availability: 'open_to_work',
+    location: `${b.location.city}, ${b.location.region}`,
+    avatarUrl: b.image,
+    heroSkills: [
+      { id: 'skill-react', name: 'React', category: 'frontend' },
+      { id: 'skill-nextjs', name: 'Next.js', category: 'frontend' },
+      { id: 'skill-typescript', name: 'TypeScript', category: 'frontend' },
+      { id: 'skill-tailwind', name: 'Tailwind CSS', category: 'frontend' },
+    ],
+    aboutTitle: 'Sobre Mí',
+    metrics: [
+      { value: '+3', label: 'Años de experiencia en desarrollo web' },
+      { value: '15+', label: 'Proyectos y aplicaciones web construidas' },
+      { value: '100%', label: 'Compromiso con accesibilidad y buenas prácticas' },
+    ],
+    sectionsConfig: {
+      projectsSection: {
+        enabled: true,
+        title: 'Proyectos Destacados',
+        subtitle: 'Selección de aplicaciones web, herramientas y productos desarrollados con foco en rendimiento, escalabilidad y experiencia de usuario.',
+        selectionMode: 'featured',
+        limit: 6,
+      },
+      skillsSection: {
+        enabled: true,
+        title: 'Stack Tecnológico & Herramientas',
+        subtitle: 'Tecnologías y herramientas que utilizo activamente en producción para diseñar, construir y desplegar software.',
+        displayMode: 'categories',
+      },
+      contactSection: {
+        enabled: true,
+        title: '¿Tienes un proyecto en mente?',
+        callToAction: 'Estoy disponible para nuevas oportunidades laborales, consultorías y proyectos desafiantes.',
+      },
+    },
+    email: b.email,
+    socialLinks: (b.profiles || []).map((p) => ({
+      network: p.network,
+      url: p.url,
+      username: p.username,
+    })),
+  }
+}
+
 function getFallbackProfile(): ProfileData {
   const b = cvJson.basics
   return {
@@ -164,6 +258,125 @@ function getFallbackLayout(): HomePageBlock[] {
 }
 
 // Resilient API queries
+export async function getLandingData(locale: Locale = 'es'): Promise<LandingData> {
+  if (!process.env.DATABASE_URI) return getFallbackLanding()
+
+  try {
+    const payload = await getPayload({ config })
+    const landing = await payload.findGlobal({
+      slug: 'landing',
+      locale,
+      depth: 2,
+    })
+
+    if (!landing) return getFallbackLanding()
+
+    const d = landing as Record<string, unknown>
+    const fallback = getFallbackLanding()
+
+    let avatarUrl: string | undefined = fallback.avatarUrl
+    if (d.avatar && typeof d.avatar === 'object' && 'url' in d.avatar) {
+      avatarUrl = (d.avatar as { url?: string }).url
+    }
+
+    let cvFileUrl: string | undefined
+    if (d.cvFile && typeof d.cvFile === 'object' && 'url' in d.cvFile) {
+      cvFileUrl = (d.cvFile as { url?: string }).url
+    }
+
+    const heroSkills: Array<{ id: string; name: string; iconKey?: string; category?: string }> = []
+    if (Array.isArray(d.heroSkills)) {
+      for (const s of d.heroSkills) {
+        if (typeof s === 'object' && s !== null) {
+          const item = s as { id?: string | number; name?: string; iconKey?: string; category?: string }
+          heroSkills.push({
+            id: String(item.id || ''),
+            name: String(item.name || ''),
+            iconKey: item.iconKey ? String(item.iconKey) : undefined,
+            category: item.category ? String(item.category) : undefined,
+          })
+        }
+      }
+    }
+
+    const metrics: Array<{ value: string; label: string }> = []
+    if (Array.isArray(d.metrics)) {
+      for (const m of d.metrics) {
+        if (typeof m === 'object' && m !== null) {
+          const item = m as { value?: string; label?: string }
+          metrics.push({
+            value: String(item.value || ''),
+            label: String(item.label || ''),
+          })
+        }
+      }
+    }
+
+    const socialLinks: Array<{ network: string; url: string; username?: string }> = []
+    if (Array.isArray(d.socialLinks)) {
+      for (const sl of d.socialLinks) {
+        if (typeof sl === 'object' && sl !== null) {
+          const item = sl as { network?: string; url?: string; username?: string | null }
+          socialLinks.push({
+            network: String(item.network || ''),
+            url: String(item.url || ''),
+            username: item.username ? String(item.username) : undefined,
+          })
+        }
+      }
+    }
+
+    const rawSections = (d.sectionsConfig || {}) as Record<string, Record<string, unknown>>
+    const rawProjectsSec = rawSections.projectsSection || {}
+    const rawSkillsSec = rawSections.skillsSection || {}
+    const rawContactSec = rawSections.contactSection || {}
+
+    return {
+      greeting: d.greeting ? String(d.greeting) : fallback.greeting,
+      fullName: d.fullName ? String(d.fullName) : fallback.fullName,
+      jobTitle: d.jobTitle ? String(d.jobTitle) : fallback.jobTitle,
+      shortBio: d.shortBio ? String(d.shortBio) : fallback.shortBio,
+      availability: d.availability ? String(d.availability) : fallback.availability,
+      location: d.location ? String(d.location) : fallback.location,
+      avatarUrl,
+      heroSkills: heroSkills.length > 0 ? heroSkills : fallback.heroSkills,
+      aboutTitle: d.aboutTitle ? String(d.aboutTitle) : fallback.aboutTitle,
+      fullBio: d.fullBio,
+      metrics: metrics.length > 0 ? metrics : fallback.metrics,
+      sectionsConfig: {
+        projectsSection: {
+          enabled: rawProjectsSec.enabled !== undefined ? Boolean(rawProjectsSec.enabled) : true,
+          title: rawProjectsSec.title ? String(rawProjectsSec.title) : fallback.sectionsConfig?.projectsSection?.title,
+          subtitle: rawProjectsSec.subtitle ? String(rawProjectsSec.subtitle) : fallback.sectionsConfig?.projectsSection?.subtitle,
+          selectionMode: (rawProjectsSec.selectionMode as 'featured' | 'manual') || 'featured',
+          limit: rawProjectsSec.limit ? Number(rawProjectsSec.limit) : 6,
+        },
+        skillsSection: {
+          enabled: rawSkillsSec.enabled !== undefined ? Boolean(rawSkillsSec.enabled) : true,
+          title: rawSkillsSec.title ? String(rawSkillsSec.title) : fallback.sectionsConfig?.skillsSection?.title,
+          subtitle: rawSkillsSec.subtitle ? String(rawSkillsSec.subtitle) : fallback.sectionsConfig?.skillsSection?.subtitle,
+          displayMode: (rawSkillsSec.displayMode as 'categories' | 'cloud') || 'categories',
+        },
+        contactSection: {
+          enabled: rawContactSec.enabled !== undefined ? Boolean(rawContactSec.enabled) : true,
+          title: rawContactSec.title ? String(rawContactSec.title) : fallback.sectionsConfig?.contactSection?.title,
+          callToAction: rawContactSec.callToAction ? String(rawContactSec.callToAction) : fallback.sectionsConfig?.contactSection?.callToAction,
+        },
+      },
+      email: d.email ? String(d.email) : fallback.email,
+      socialLinks: socialLinks.length > 0 ? socialLinks : fallback.socialLinks,
+      cvFileUrl,
+      seo: {
+        metaTitle: d.metaTitle ? String(d.metaTitle) : undefined,
+        metaDescription: d.metaDescription ? String(d.metaDescription) : undefined,
+        ogImageUrl: d.ogImage && typeof d.ogImage === 'object' && 'url' in d.ogImage ? (d.ogImage as { url?: string }).url : undefined,
+      },
+    }
+  } catch {
+    return getFallbackLanding()
+  }
+}
+
 export async function getProfileData(locale: Locale = 'es'): Promise<ProfileData> {
   if (!process.env.DATABASE_URI) return getFallbackProfile()
 
@@ -243,7 +456,7 @@ export async function getProjectsData(locale: Locale = 'es', limit = 6, onlyFeat
       limit,
       sort: 'order',
       locale,
-      depth: 1,
+      depth: 2,
     })
 
     if (!res.docs || res.docs.length === 0) {
