@@ -45,7 +45,7 @@ export function DynamicProjectsBlock({ block, projects, title, subtitle }: Dynam
           projects.map((project) => (
             <Card
               key={project.id}
-              className="flex flex-col w-full max-w-sm overflow-hidden border border-border bg-card/60 backdrop-blur-sm transition-all duration-200 hover:shadow-lg hover:border-primary/20"
+              className="group flex flex-col w-full max-w-sm overflow-hidden rounded-xl border border-border/80 bg-card/60 backdrop-blur-sm transition-all duration-300 ease-out hover:-translate-y-1.5 hover:border-emerald-500/40 hover:shadow-[0_0_25px_-5px_rgba(16,185,129,0.18)] dark:hover:shadow-[0_0_35px_-5px_rgba(16,185,129,0.25)]"
             >
               <div className="relative w-full h-48 bg-muted overflow-hidden flex items-center justify-center">
                 {project.imageUrl ? (
@@ -54,18 +54,24 @@ export function DynamicProjectsBlock({ block, projects, title, subtitle }: Dynam
                     width={384}
                     src={project.imageUrl}
                     alt={`Captura del proyecto ${project.title}`}
-                    className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
+                    className="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-105"
                   />
                 ) : (
                   <div className="flex flex-col items-center justify-center text-muted-foreground gap-2 p-4 text-center">
-                    <Code2 className="size-10 stroke-1 opacity-70" />
+                    <Code2 className="size-10 stroke-1 opacity-70 group-hover:text-emerald-500 transition-colors duration-300" />
                     <span className="text-xs font-mono">Proyecto FullStack</span>
                   </div>
                 )}
+                {/* Subtle dark gradient overlay on hover */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
+
                 {project.featured && (
-                  <div className="absolute top-2 right-2">
-                    <Badge variant="secondary" className="bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/20 text-xs gap-1">
-                      <span className="size-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                  <div className="absolute top-2.5 right-2.5 z-10">
+                    <Badge
+                      variant="secondary"
+                      className="bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 border border-emerald-500/30 text-xs gap-1.5 shadow-[0_0_12px_-2px_rgba(16,185,129,0.3)] backdrop-blur-md"
+                    >
+                      <span className="size-1.5 rounded-full bg-emerald-500 animate-pulse shadow-[0_0_6px_#10B981]" />
                       Destacado
                     </Badge>
                   </div>
@@ -74,10 +80,10 @@ export function DynamicProjectsBlock({ block, projects, title, subtitle }: Dynam
 
               <CardContent className="space-y-3 p-5 flex-1 flex flex-col justify-between">
                 <div>
-                  <h3 className="text-lg font-semibold text-foreground tracking-tight">
+                  <h3 className="text-lg font-semibold text-foreground tracking-tight group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors duration-200">
                     {project.title}
                   </h3>
-                  <p className="text-sm text-muted-foreground mt-1.5 leading-relaxed">
+                  <p className="text-sm text-muted-foreground mt-1.5 leading-relaxed line-clamp-3">
                     {project.summary}
                   </p>
                 </div>
@@ -87,7 +93,7 @@ export function DynamicProjectsBlock({ block, projects, title, subtitle }: Dynam
                     {project.techStack.map((tech) => (
                       <span
                         key={tech}
-                        className="inline-flex items-center px-2 py-0.5 rounded text-xs font-mono bg-muted/80 text-muted-foreground border border-border/50"
+                        className="inline-flex items-center px-2 py-0.5 rounded text-xs font-mono bg-muted/70 text-muted-foreground border border-border/60 group-hover:border-emerald-500/20 transition-colors duration-200"
                       >
                         {tech}
                       </span>
@@ -102,7 +108,10 @@ export function DynamicProjectsBlock({ block, projects, title, subtitle }: Dynam
                     href={project.liveUrl}
                     target="_blank"
                     rel="noreferrer noopener"
-                    className={cn(buttonVariants({ variant: 'outline', size: 'sm' }), 'flex-1 text-xs gap-1.5')}
+                    className={cn(
+                      buttonVariants({ variant: 'outline', size: 'sm' }),
+                      'flex-1 text-xs gap-1.5 hover:border-emerald-500/40 hover:text-emerald-600 dark:hover:text-emerald-400 hover:bg-emerald-500/5 hover:shadow-[0_0_12px_-3px_rgba(16,185,129,0.2)] transition-all duration-200'
+                    )}
                     aria-label={`Ver demo en vivo de ${project.title}`}
                   >
                     <ExternalLink className="size-3.5" />
@@ -114,7 +123,10 @@ export function DynamicProjectsBlock({ block, projects, title, subtitle }: Dynam
                     href={project.githubUrl}
                     target="_blank"
                     rel="noreferrer noopener"
-                    className={cn(buttonVariants({ variant: 'outline', size: 'sm' }), 'flex-1 text-xs gap-1.5')}
+                    className={cn(
+                      buttonVariants({ variant: 'outline', size: 'sm' }),
+                      'flex-1 text-xs gap-1.5 hover:border-emerald-500/40 hover:text-emerald-600 dark:hover:text-emerald-400 hover:bg-emerald-500/5 hover:shadow-[0_0_12px_-3px_rgba(16,185,129,0.2)] transition-all duration-200'
+                    )}
                     aria-label={`Ver código fuente de ${project.title}`}
                   >
                     <Github className="size-3.5" />
