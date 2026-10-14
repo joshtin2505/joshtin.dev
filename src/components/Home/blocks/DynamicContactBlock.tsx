@@ -34,10 +34,14 @@ export function DynamicContactBlock({
 
   return (
     <section id="contacto" className="max-w-5xl mx-auto px-4 py-16 scroll-mt-20">
-      <div className="p-8 sm:p-12 rounded-2xl border border-border bg-gradient-to-br from-card/80 to-card/40 backdrop-blur-sm relative overflow-hidden">
+      <div className="p-8 sm:p-12 rounded-2xl border border-border/80 bg-gradient-to-br from-card/90 via-card/60 to-card/40 backdrop-blur-md relative overflow-hidden shadow-[0_0_30px_-10px_rgba(16,185,129,0.15)] hover:border-emerald-500/40 hover:shadow-[0_0_40px_-8px_rgba(16,185,129,0.25)] transition-all duration-500">
+        {/* Ambient background glows */}
+        <div className="absolute -top-24 -right-24 size-80 rounded-full bg-emerald-500/10 blur-[90px] pointer-events-none" />
+        <div className="absolute -bottom-24 -left-24 size-80 rounded-full bg-cyan-500/10 blur-[90px] pointer-events-none" />
+
         <div className="max-w-2xl relative z-10">
           <div className="flex items-center gap-2 mb-2 text-primary font-mono text-xs uppercase tracking-wider">
-            <Mail className="size-4" />
+            <Mail className="size-4 text-emerald-500" />
             <span>Contacto</span>
           </div>
 
@@ -52,7 +56,10 @@ export function DynamicContactBlock({
           <div className="flex flex-wrap items-center gap-4">
             <Link
               href={`mailto:${displayEmail}`}
-              className={cn(buttonVariants({ size: 'default' }), 'gap-2 font-medium')}
+              className={cn(
+                buttonVariants({ size: 'default' }),
+                'gap-2 font-medium shadow-[0_0_20px_-5px_rgba(16,185,129,0.3)] hover:shadow-[0_0_25px_-3px_rgba(16,185,129,0.5)] hover:scale-[1.02] active:scale-[0.98] transition-all duration-300'
+              )}
               aria-label={`Enviar mensaje directo a ${displayEmail}`}
             >
               <Send className="size-4" />
@@ -60,7 +67,7 @@ export function DynamicContactBlock({
             </Link>
 
             <div className="flex items-center gap-1.5 text-xs text-muted-foreground font-mono">
-              <MapPin className="size-4 text-primary" />
+              <MapPin className="size-4 text-emerald-500" />
               <span>{displayLocation}</span>
             </div>
           </div>

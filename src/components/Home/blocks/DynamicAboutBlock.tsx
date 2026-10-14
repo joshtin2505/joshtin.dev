@@ -54,10 +54,10 @@ export function DynamicAboutBlock({
               {metrics.map((m, idx) => (
                 <Card
                   key={`metric-${idx}`}
-                  className="border border-border/80 bg-card/60 backdrop-blur-sm transition-all hover:border-primary/30 hover:shadow-sm"
+                  className="group border border-border/80 bg-card/60 backdrop-blur-sm transition-all duration-300 ease-out hover:-translate-y-1 hover:border-emerald-500/40 hover:shadow-[0_0_20px_-3px_rgba(16,185,129,0.18)] dark:hover:shadow-[0_0_25px_-3px_rgba(16,185,129,0.22)]"
                 >
                   <CardContent className="p-4 flex items-center gap-4">
-                    <div className="flex items-center justify-center size-12 rounded-xl bg-primary/10 text-primary font-mono text-xl font-bold shrink-0">
+                    <div className="flex items-center justify-center size-12 rounded-xl bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20 font-mono text-xl font-bold shrink-0 transition-transform duration-300 group-hover:scale-105 shadow-[0_0_12px_-3px_rgba(16,185,129,0.2)]">
                       {m.value}
                     </div>
                     <div className="flex-1">
@@ -65,7 +65,7 @@ export function DynamicAboutBlock({
                         {m.label}
                       </p>
                     </div>
-                    <CheckCircle className="size-4 text-emerald-500/70 shrink-0" />
+                    <CheckCircle className="size-4 text-emerald-500 shrink-0 transition-transform duration-300 group-hover:scale-110 drop-shadow-[0_0_6px_rgba(16,185,129,0.5)]" />
                   </CardContent>
                 </Card>
               ))}
