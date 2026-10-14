@@ -25,17 +25,32 @@ export function DynamicHeroBlock({ block = {}, profile, landing }: DynamicHeroBl
   const jobTitle = landing?.jobTitle || profile?.jobTitle || 'Software Developer & Frontend Engineer'
   const shortBio = landing?.shortBio || profile?.shortBio || ''
   const email = landing?.email || profile?.email || 'justin.castro.p@gmail.com'
-  const availability = landing?.availability || profile?.availability || 'open_to_work'
   const socialLinks = landing?.socialLinks || profile?.socialLinks || []
-  const avatarUrl = landing?.avatarUrl || profile?.avatarUrl || '/img/avatar.webp'
+
+  // Resolver avatarUrl considerando landing.avatarUrl, o landing.avatar / landing.cvFile como objeto de Media
+  let resolvedAvatarUrl =
+    landing?.avatarUrl ||
+    profile?.avatarUrl ||
+    'https://lh3.googleusercontent.com/a/ACg8ocJ5sbxVO7ITlL9y5XCPJtk5LgLV_pTHKLpsXqzL341QUqKKPJuwXQ=s396-c-no'
+  const rawMedia = (landing as unknown as { avatar?: { filename?: string; url?: string }; cvFile?: { filename?: string; url?: string } })
+  const rawAvatar = rawMedia?.avatar || rawMedia?.cvFile
+  if (rawAvatar && typeof rawAvatar === 'object') {
+    if (rawAvatar.filename) {
+      resolvedAvatarUrl = `/media/${rawAvatar.filename}`
+    } else if (rawAvatar.url) {
+      resolvedAvatarUrl = rawAvatar.url
+    }
+  }
+
+  const availability = landing?.availability || 'open_to_work'
   const heroSkills = landing?.heroSkills || []
 
   const availabilityText =
     availability === 'open_to_work'
       ? 'Disponible para entrevistas y contratación'
       : availability === 'freelance_only'
-      ? 'Disponible para proyectos freelance'
-      : 'Actualmente empleado'
+        ? 'Disponible para proyectos freelance'
+        : 'Actualmente empleado'
 
   return (
     <section className="w-full relative overflow-hidden border-b border-border/60 py-16 md:py-24">
@@ -122,7 +137,7 @@ export function DynamicHeroBlock({ block = {}, profile, landing }: DynamicHeroBl
           <div className="relative shrink-0">
             <div className="relative size-36 sm:size-44 md:size-52 rounded-2xl overflow-hidden ring-2 ring-border/80 shadow-xl bg-muted/40">
               <Image
-                src={avatarUrl}
+                src={resolvedAvatarUrl}
                 alt={`Fotografía de perfil de ${fullName}`}
                 fill
                 priority

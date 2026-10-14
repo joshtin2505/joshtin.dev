@@ -275,15 +275,17 @@ export async function getLandingData(locale: Locale = 'es'): Promise<LandingData
     const fallback = getFallbackLanding()
 
     let avatarUrl: string | undefined = fallback.avatarUrl
-    if (d.avatar && typeof d.avatar === 'object' && 'url' in d.avatar) {
-      avatarUrl = (d.avatar as { url?: string }).url
-    } else if (
-      d.cvFile &&
-      typeof d.cvFile === 'object' &&
-      'url' in d.cvFile &&
-      (d.cvFile as { mimeType?: string }).mimeType?.startsWith('image/')
-    ) {
-      avatarUrl = (d.cvFile as { url?: string }).url
+    const avatarDoc = (d.avatar || d.cvFile) as Record<string, unknown> | null
+    if (avatarDoc && typeof avatarDoc === 'object') {
+      const mime = String(avatarDoc.mimeType || '')
+      const isImg = mime.startsWith('image/') || (!mime && avatarDoc.filename)
+      if (isImg) {
+        if (avatarDoc.filename) {
+          avatarUrl = `/media/${avatarDoc.filename}`
+        } else if (avatarDoc.url) {
+          avatarUrl = String(avatarDoc.url)
+        }
+      }
     }
 
     let cvFileUrl: string | undefined
