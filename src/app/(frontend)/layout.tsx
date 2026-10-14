@@ -2,7 +2,6 @@ import type { Metadata } from 'next'
 import localFont from 'next/font/local'
 import '../globals.css'
 import { Providers } from './Providers'
-import { JsonLd } from '@/components/seo/JsonLd'
 import cvJson from '@/mocks/cv.json'
 
 const geistSans = localFont({
@@ -84,7 +83,6 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} font-sans antialiased`}
       >
-        <JsonLd />
         <Providers>{children}</Providers>
       </body>
     </html>
