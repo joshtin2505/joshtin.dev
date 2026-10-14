@@ -42,7 +42,7 @@ function NavBar() {
         <div className="flex items-center gap-2 sm:gap-4">
           <button
             type="button"
-            className="hidden items-center w-44 justify-between md:flex bg-neutral-100 hover:bg-neutral-200 dark:bg-neutral-900 dark:hover:bg-neutral-800 transition rounded-md px-2.5 py-1.5 text-xs text-muted-foreground border border-border"
+            className="hidden items-center w-44 justify-between md:flex bg-neutral-100/90 hover:bg-neutral-200/90 dark:bg-neutral-900/90 dark:hover:bg-neutral-800/90 transition-all duration-300 rounded-md px-2.5 py-1.5 text-xs text-muted-foreground border border-border hover:border-emerald-500/40 hover:shadow-[0_0_15px_-3px_rgba(16,185,129,0.2)]"
             onClick={simulateCtrlK}
             aria-label="Buscar en la paleta de comandos (Ctrl+K)"
           >
