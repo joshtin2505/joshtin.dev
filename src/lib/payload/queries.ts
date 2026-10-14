@@ -277,6 +277,13 @@ export async function getLandingData(locale: Locale = 'es'): Promise<LandingData
     let avatarUrl: string | undefined = fallback.avatarUrl
     if (d.avatar && typeof d.avatar === 'object' && 'url' in d.avatar) {
       avatarUrl = (d.avatar as { url?: string }).url
+    } else if (
+      d.cvFile &&
+      typeof d.cvFile === 'object' &&
+      'url' in d.cvFile &&
+      (d.cvFile as { mimeType?: string }).mimeType?.startsWith('image/')
+    ) {
+      avatarUrl = (d.cvFile as { url?: string }).url
     }
 
     let cvFileUrl: string | undefined

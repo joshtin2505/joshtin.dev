@@ -4,13 +4,15 @@ import {
   getLandingData,
   getProjectsData,
   getSkillsData,
+  getExperiencesData,
 } from '@/lib/payload/queries'
 
 export default async function Home() {
-  const [landing, projects, skillsGroups] = await Promise.all([
+  const [landing, projects, skillsGroups, experiences] = await Promise.all([
     getLandingData('es'),
     getProjectsData('es', 12, true),
     getSkillsData(),
+    getExperiencesData('es', 5),
   ])
 
   return (
@@ -19,6 +21,7 @@ export default async function Home() {
         initialLanding={landing}
         initialProjects={projects}
         initialSkills={skillsGroups}
+        initialExperiences={experiences}
       />
     </BasicLayout>
   )
