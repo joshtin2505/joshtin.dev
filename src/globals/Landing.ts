@@ -2,6 +2,7 @@ import type { GlobalConfig } from 'payload'
 
 export const Landing: GlobalConfig = {
   slug: 'landing',
+  dbName: 'landing',
   label: 'Landing Page & Portafolio',
   admin: {
     group: 'Contenido Principal',
@@ -74,6 +75,7 @@ export const Landing: GlobalConfig = {
                 {
                   name: 'availability',
                   type: 'select',
+                  enumName: 'landing_availability',
                   label: 'Disponibilidad laboral',
                   options: [
                     { label: 'Disponible para entrevistas y contratación', value: 'open_to_work' },
@@ -199,6 +201,7 @@ export const Landing: GlobalConfig = {
                     {
                       name: 'selectionMode',
                       type: 'select',
+                      enumName: 'landing_proj_sel_mode',
                       label: 'Modo de selección',
                       options: [
                         { label: 'Automático (Proyectos marcados como Destacados)', value: 'featured' },
@@ -253,6 +256,7 @@ export const Landing: GlobalConfig = {
                     {
                       name: 'displayMode',
                       type: 'select',
+                      enumName: 'landing_skills_disp_mode',
                       label: 'Formato visual',
                       options: [
                         { label: 'Agrupado por categorías (Frontend, Backend, etc.)', value: 'categories' },
@@ -317,6 +321,7 @@ export const Landing: GlobalConfig = {
                     {
                       name: 'network',
                       type: 'select',
+                      enumName: 'landing_social_network',
                       label: 'Plataforma',
                       options: [
                         { label: 'GitHub', value: 'github' },
