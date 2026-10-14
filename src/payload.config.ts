@@ -12,6 +12,7 @@ import { Projects } from './collections/Projects'
 import { Posts } from './collections/Posts'
 import { Profile } from './globals/Profile'
 import { HomePage } from './globals/HomePage'
+import { Landing } from './globals/Landing'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -22,9 +23,16 @@ export default buildConfig({
     importMap: {
       baseDir: path.resolve(dirname),
     },
+    livePreview: {
+      breakpoints: [
+        { label: 'Mobile', name: 'mobile', width: 375, height: 667 },
+        { label: 'Tablet', name: 'tablet', width: 768, height: 1024 },
+        { label: 'Desktop', name: 'desktop', width: 1440, height: 900 },
+      ],
+    },
   },
   collections: [Users, Media, Skills, Experiences, Projects, Posts],
-  globals: [Profile, HomePage],
+  globals: [Landing, Profile, HomePage],
   editor: lexicalEditor(),
   localization: {
     locales: [
