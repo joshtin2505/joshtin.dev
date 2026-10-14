@@ -5,18 +5,32 @@ import { cn } from '@/lib/utils'
 import type { ProfileData } from '@/lib/payload/queries'
 
 interface DynamicContactBlockProps {
-  block: {
+  block?: {
     title?: string
     subtitle?: string
   }
-  profile: ProfileData
+  profile?: ProfileData
+  title?: string
+  callToAction?: string
+  email?: string
+  location?: string
 }
 
-export function DynamicContactBlock({ block, profile }: DynamicContactBlockProps) {
-  const displayTitle = block.title || '¿Hablamos?'
+export function DynamicContactBlock({
+  block,
+  profile,
+  title,
+  callToAction,
+  email,
+  location,
+}: DynamicContactBlockProps) {
+  const displayTitle = title || block?.title || '¿Hablamos?'
   const displaySubtitle =
-    block.subtitle ||
+    callToAction ||
+    block?.subtitle ||
     'Estoy disponible para nuevas oportunidades laborales, consultorías y proyectos desafiantes.'
+  const displayEmail = email || profile?.email || 'justin.castro.p@gmail.com'
+  const displayLocation = location || profile?.location || 'Colombia'
 
   return (
     <section id="contacto" className="max-w-5xl mx-auto px-4 py-16 scroll-mt-20">
@@ -37,9 +51,9 @@ export function DynamicContactBlock({ block, profile }: DynamicContactBlockProps
 
           <div className="flex flex-wrap items-center gap-4">
             <Link
-              href={`mailto:${profile.email}`}
+              href={`mailto:${displayEmail}`}
               className={cn(buttonVariants({ size: 'default' }), 'gap-2 font-medium')}
-              aria-label={`Enviar mensaje directo a ${profile.email}`}
+              aria-label={`Enviar mensaje directo a ${displayEmail}`}
             >
               <Send className="size-4" />
               <span>Enviar mensaje directo</span>
@@ -47,7 +61,7 @@ export function DynamicContactBlock({ block, profile }: DynamicContactBlockProps
 
             <div className="flex items-center gap-1.5 text-xs text-muted-foreground font-mono">
               <MapPin className="size-4 text-primary" />
-              <span>{profile.location}</span>
+              <span>{displayLocation}</span>
             </div>
           </div>
         </div>

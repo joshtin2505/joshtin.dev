@@ -9,19 +9,22 @@ import { cn } from '@/lib/utils'
 import type { ProjectItem } from '@/lib/payload/queries'
 
 interface DynamicProjectsBlockProps {
-  block: {
+  block?: {
     title?: string
     subtitle?: string
     limit?: number
     onlyFeatured?: boolean
   }
   projects: ProjectItem[]
+  title?: string
+  subtitle?: string
 }
 
-export function DynamicProjectsBlock({ block, projects }: DynamicProjectsBlockProps) {
-  const displayTitle = block.title || 'Proyectos Destacados'
+export function DynamicProjectsBlock({ block, projects, title, subtitle }: DynamicProjectsBlockProps) {
+  const displayTitle = title || block?.title || 'Proyectos Destacados'
   const displaySubtitle =
-    block.subtitle ||
+    subtitle ||
+    block?.subtitle ||
     'Selección de aplicaciones web, herramientas y productos desarrollados con foco en rendimiento, escalabilidad y experiencia de usuario.'
 
   return (

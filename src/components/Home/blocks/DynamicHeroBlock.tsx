@@ -4,10 +4,11 @@ import { MailIcon, FileTextIcon } from 'lucide-react'
 import { SOCIAL_ICONS } from '@/lib/SocialIcons'
 import { buttonVariants } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
-import type { ProfileData } from '@/lib/payload/queries'
+import type { ProfileData, LandingData } from '@/lib/payload/queries'
+import { Badge } from '@/components/ui/badge'
 
 interface DynamicHeroBlockProps {
-  block: {
+  block?: {
     greeting?: string
     headline?: string
     subheadline?: string
@@ -15,14 +16,24 @@ interface DynamicHeroBlockProps {
     showContactCta?: boolean
     showCvCta?: boolean
   }
-  profile: ProfileData
+  profile?: ProfileData
+  landing?: LandingData
 }
 
-export function DynamicHeroBlock({ block, profile }: DynamicHeroBlockProps) {
+export function DynamicHeroBlock({ block = {}, profile, landing }: DynamicHeroBlockProps) {
+  const fullName = landing?.fullName || profile?.fullName || 'Justin Castro Perez'
+  const jobTitle = landing?.jobTitle || profile?.jobTitle || 'Software Developer & Frontend Engineer'
+  const shortBio = landing?.shortBio || profile?.shortBio || ''
+  const email = landing?.email || profile?.email || 'justin.castro.p@gmail.com'
+  const availability = landing?.availability || profile?.availability || 'open_to_work'
+  const socialLinks = landing?.socialLinks || profile?.socialLinks || []
+  const avatarUrl = landing?.avatarUrl || profile?.avatarUrl || '/img/avatar.webp'
+  const heroSkills = landing?.heroSkills || []
+
   const availabilityText =
-    profile.availability === 'open_to_work'
+    availability === 'open_to_work'
       ? 'Disponible para entrevistas y contratación'
-      : profile.availability === 'freelance_only'
+      : availability === 'freelance_only'
       ? 'Disponible para proyectos freelance'
       : 'Actualmente empleado'
 
@@ -39,30 +50,44 @@ export function DynamicHeroBlock({ block, profile }: DynamicHeroBlockProps) {
             )}
 
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-foreground font-sans">
-              {profile.fullName}
+              {fullName}
             </h1>
 
             <h2 className="text-xl sm:text-2xl font-mono text-muted-foreground mt-3 font-medium">
-              {profile.jobTitle}
+              {jobTitle}
             </h2>
 
             <p className="text-muted-foreground text-sm sm:text-base mt-4 leading-relaxed font-sans max-w-xl">
-              {block.subheadline || profile.shortBio}
+              {block?.subheadline || shortBio}
             </p>
 
+            {heroSkills.length > 0 && (
+              <div className="flex flex-wrap gap-1.5 mt-5 justify-center md:justify-start">
+                {heroSkills.map((s) => (
+                  <Badge
+                    key={s.id}
+                    variant="outline"
+                    className="text-xs font-mono py-0.5 px-2.5 bg-muted/30 text-muted-foreground border-border/80"
+                  >
+                    {s.name}
+                  </Badge>
+                ))}
+              </div>
+            )}
+
             <div className="flex flex-wrap items-center justify-center md:justify-start gap-3 mt-8">
-              {block.showContactCta !== false && (
+              {block?.showContactCta !== false && (
                 <Link
-                  href={`mailto:${profile.email}`}
+                  href={`mailto:${email}`}
                   className={cn(buttonVariants({ size: 'default' }), 'gap-2 font-medium')}
-                  aria-label={`Enviar correo a ${profile.fullName}`}
+                  aria-label={`Enviar correo a ${fullName}`}
                 >
                   <MailIcon className="size-4" />
                   <span>Contactar</span>
                 </Link>
               )}
 
-              {block.showCvCta !== false && (
+              {block?.showCvCta !== false && (
                 <Link
                   href="/curriculum"
                   className={cn(buttonVariants({ variant: 'outline', size: 'default' }), 'gap-2 font-medium')}
@@ -74,7 +99,7 @@ export function DynamicHeroBlock({ block, profile }: DynamicHeroBlockProps) {
               )}
 
               <div className="flex items-center gap-2 ml-1">
-                {profile.socialLinks.map(({ network, url }) => {
+                {socialLinks.map(({ network, url }) => {
                   const Icon = SOCIAL_ICONS[network]
                   if (!Icon) return null
                   return (
@@ -97,8 +122,8 @@ export function DynamicHeroBlock({ block, profile }: DynamicHeroBlockProps) {
           <div className="relative shrink-0">
             <div className="relative size-36 sm:size-44 md:size-52 rounded-2xl overflow-hidden ring-2 ring-border/80 shadow-xl bg-muted/40">
               <Image
-                src={profile.avatarUrl || '/img/avatar.webp'}
-                alt={`Fotografía de perfil de ${profile.fullName}`}
+                src={avatarUrl}
+                alt={`Fotografía de perfil de ${fullName}`}
                 fill
                 priority
                 sizes="(max-width: 640px) 144px, (max-width: 768px) 176px, 208px"

@@ -3,11 +3,13 @@ import { Badge } from '@/components/ui/badge'
 import type { SkillCategoryGroup } from '@/lib/payload/queries'
 
 interface DynamicTechStackBlockProps {
-  block: {
+  block?: {
     title?: string
     subtitle?: string
   }
   skillsGroups: SkillCategoryGroup[]
+  title?: string
+  subtitle?: string
 }
 
 const CATEGORY_DESCRIPTIONS: Record<string, string> = {
@@ -17,10 +19,11 @@ const CATEGORY_DESCRIPTIONS: Record<string, string> = {
   Herramientas: 'Control de versiones, tooling y flujos de trabajo con IA.',
 }
 
-export function DynamicTechStackBlock({ block, skillsGroups }: DynamicTechStackBlockProps) {
-  const displayTitle = block.title || 'Stack Tecnológico'
+export function DynamicTechStackBlock({ block, skillsGroups, title, subtitle }: DynamicTechStackBlockProps) {
+  const displayTitle = title || block?.title || 'Stack Tecnológico'
   const displaySubtitle =
-    block.subtitle ||
+    subtitle ||
+    block?.subtitle ||
     'Tecnologías y herramientas que utilizo activamente en producción para diseñar, construir y desplegar software.'
 
   return (

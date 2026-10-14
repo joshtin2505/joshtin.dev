@@ -1,35 +1,26 @@
 import BasicLayout from '@/components/layouts/BasicLayout'
-import { BlockRenderer } from '@/components/Home/blocks/BlockRenderer'
+import { LandingClient } from './LandingClient'
 import {
-  getHomePageLayout,
-  getProfileData,
+  getLandingData,
   getProjectsData,
-  getExperiencesData,
   getSkillsData,
-  getLatestPosts,
 } from '@/lib/payload/queries'
 
 export default async function Home() {
-  const [layout, profile, projects, experiences, skillsGroups, posts] =
-    await Promise.all([
-      getHomePageLayout('es'),
-      getProfileData('es'),
-      getProjectsData('es', 6, true),
-      getExperiencesData('es', 5),
-      getSkillsData(),
-      getLatestPosts('es', 3),
-    ])
+  const [landing, projects, skillsGroups] = await Promise.all([
+    getLandingData('es'),
+    getProjectsData('es', 12, true),
+    getSkillsData(),
+  ])
 
   return (
     <BasicLayout>
-      <BlockRenderer
-        layout={layout}
-        profile={profile}
-        projects={projects}
-        experiences={experiences}
-        skillsGroups={skillsGroups}
-        posts={posts}
+      <LandingClient
+        initialLanding={landing}
+        initialProjects={projects}
+        initialSkills={skillsGroups}
       />
     </BasicLayout>
   )
 }
+
