@@ -4,7 +4,7 @@ import { MailIcon, FileTextIcon } from 'lucide-react'
 import { SOCIAL_ICONS } from '@/lib/SocialIcons'
 import { buttonVariants } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
-import type { ProfileData, LandingData } from '@/lib/payload/queries'
+import type { ProfileData, LandingData, SiteSettingsData } from '@/lib/payload/queries'
 import { Badge } from '@/components/ui/badge'
 
 interface DynamicHeroBlockProps {
@@ -12,38 +12,46 @@ interface DynamicHeroBlockProps {
     greeting?: string
     headline?: string
     subheadline?: string
+    variant?: string
     showAvailabilityBadge?: boolean
     showContactCta?: boolean
     showCvCta?: boolean
+    blockSettings?: {
+      spacing?: string
+      backgroundVariant?: string
+      anchorId?: string
+    }
   }
   profile?: ProfileData
   landing?: LandingData
+  siteSettings?: SiteSettingsData
 }
 
-export function DynamicHeroBlock({ block = {}, profile, landing }: DynamicHeroBlockProps) {
-  const fullName = landing?.fullName || profile?.fullName || 'Justin Castro Perez'
-  const jobTitle = landing?.jobTitle || profile?.jobTitle || 'Software Developer & Frontend Engineer'
-  const shortBio = landing?.shortBio || profile?.shortBio || ''
-  const email = landing?.email || profile?.email || 'justin.castro.p@gmail.com'
-  const socialLinks = landing?.socialLinks || profile?.socialLinks || []
+export function DynamicHeroBlock({ block = {}, profile, landing, siteSettings }: DynamicHeroBlockProps) {
+  const settings = siteSettings || (landing as unknown as SiteSettingsData)
+  const fullName = settings?.fullName || profile?.fullName || 'Justin Castro Perez'
+  const jobTitle = settings?.jobTitle || profile?.jobTitle || 'Software Developer & Frontend Engineer'
+  const shortBio = settings?.shortBio || profile?.shortBio || ''
+  const email = settings?.email || profile?.email || 'justin.castro.p@gmail.com'
+  const socialLinks = settings?.socialLinks || profile?.socialLinks || []
 
-  // Resolver avatarUrl considerando landing.avatarUrl, o landing.avatar / landing.cvFile como objeto de Media
+  // Resolver avatarUrl de forma segura (sin asignar cvFile como imagen)
   let resolvedAvatarUrl =
-    landing?.avatarUrl ||
+    settings?.avatarUrl ||
     profile?.avatarUrl ||
     'https://lh3.googleusercontent.com/a/ACg8ocJ5sbxVO7ITlL9y5XCPJtk5LgLV_pTHKLpsXqzL341QUqKKPJuwXQ=s396-c-no'
-  const rawMedia = (landing as unknown as { avatar?: { filename?: string; url?: string }; cvFile?: { filename?: string; url?: string } })
-  const rawAvatar = rawMedia?.avatar || rawMedia?.cvFile
+  const rawMedia = (settings as unknown as { avatar?: { filename?: string; url?: string } })
+  const rawAvatar = rawMedia?.avatar
   if (rawAvatar && typeof rawAvatar === 'object') {
-    if (rawAvatar.filename) {
-      resolvedAvatarUrl = `/media/${rawAvatar.filename}`
-    } else if (rawAvatar.url) {
+    if (rawAvatar.url) {
       resolvedAvatarUrl = rawAvatar.url
+    } else if (rawAvatar.filename) {
+      resolvedAvatarUrl = `/media/${rawAvatar.filename}`
     }
   }
 
-  const availability = landing?.availability || 'open_to_work'
-  const heroSkills = landing?.heroSkills || []
+  const availability = settings?.availability || 'open_to_work'
+  const heroSkills = settings?.heroSkills || []
 
   const availabilityText =
     availability === 'open_to_work'

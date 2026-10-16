@@ -923,6 +923,8 @@ export async function getLatestPosts(locale: Locale = 'es', limit = 3): Promise<
   }
 }
 
+export const getPostsData = getLatestPosts
+
 export async function getPostBySlug(slug: string, locale: Locale = 'es'): Promise<BlogPostItem | null> {
   if (!process.env.DATABASE_URI) return null
 

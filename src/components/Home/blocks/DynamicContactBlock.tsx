@@ -2,14 +2,22 @@ import { Mail, Send, MapPin } from 'lucide-react'
 import { buttonVariants } from '@/components/ui/button'
 import Link from 'next/link'
 import { cn } from '@/lib/utils'
-import type { ProfileData } from '@/lib/payload/queries'
+import type { ProfileData, SiteSettingsData } from '@/lib/payload/queries'
 
 interface DynamicContactBlockProps {
   block?: {
     title?: string
     subtitle?: string
+    eyebrow?: string
+    showDirectEmail?: boolean
+    blockSettings?: {
+      spacing?: string
+      backgroundVariant?: string
+      anchorId?: string
+    }
   }
   profile?: ProfileData
+  siteSettings?: SiteSettingsData
   title?: string
   callToAction?: string
   email?: string
@@ -19,18 +27,19 @@ interface DynamicContactBlockProps {
 export function DynamicContactBlock({
   block,
   profile,
+  siteSettings,
   title,
   callToAction,
   email,
   location,
 }: DynamicContactBlockProps) {
-  const displayTitle = title || block?.title || '¿Hablamos?'
+  const displayTitle = title || block?.title || '¿Tienes un proyecto en mente?'
   const displaySubtitle =
     callToAction ||
     block?.subtitle ||
-    'Estoy disponible para nuevas oportunidades laborales, consultorías y proyectos desafiantes.'
-  const displayEmail = email || profile?.email || 'justin.castro.p@gmail.com'
-  const displayLocation = location || profile?.location || 'Colombia'
+    'Estoy disponible para nuevas oportunidades laborales, consultorías de ingeniería frontend y side projects de impacto.'
+  const displayEmail = email || siteSettings?.email || profile?.email || 'justin.castro.p@gmail.com'
+  const displayLocation = location || siteSettings?.location || profile?.location || 'Colombia'
 
   return (
     <section id="contacto" className="max-w-5xl mx-auto px-4 py-16 scroll-mt-20">

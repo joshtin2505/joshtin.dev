@@ -40,4 +40,6 @@ next-env.d.ts
 
 # agents & superpowers artifacts
 .superpowers/
+__pycache__/
+*.py[cod]
 
