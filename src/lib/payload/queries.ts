@@ -120,12 +120,26 @@ export interface BlogPostItem {
   content?: unknown
 }
 
-export interface HomePageBlock {
+export interface PageBlock {
   blockType: string
   id?: string
   enabled?: boolean
+  blockSettings?: {
+    spacing?: 'compact' | 'normal' | 'spacious'
+    backgroundVariant?: 'default' | 'grid' | 'dots' | 'glow'
+    anchorId?: string
+  }
   [key: string]: unknown
 }
+
+export interface PageData {
+  id: string
+  title: string
+  slug: string
+  layout: PageBlock[]
+}
+
+export type HomePageBlock = PageBlock
 
 // Fallback data builders from cv.json
 export function getFallbackLanding(): LandingData {
@@ -608,6 +622,101 @@ export async function getHomePageLayout(locale: Locale = 'es'): Promise<HomePage
     return getFallbackLayout()
   } catch {
     return getFallbackLayout()
+  }
+}
+
+export async function getPageBySlug(
+  slug: string,
+  locale: Locale = 'es',
+  draft = false
+): Promise<PageData | null> {
+  const isHome = slug === 'home' || slug === 'inicio'
+
+  if (!process.env.DATABASE_URI) {
+    if (isHome) {
+      return {
+        id: 'fallback-home',
+        title: 'Inicio',
+        slug: 'home',
+        layout: [
+          { blockType: 'hero', enabled: true, greeting: 'Hola, soy', variant: 'split', showAvailabilityBadge: true, showContactCta: true, showCvCta: true, blockSettings: { spacing: 'normal', backgroundVariant: 'default', anchorId: 'hero' } },
+          { blockType: 'about', enabled: true, eyebrow: '01 // PERFIL', title: 'Sobre Mí & Trayectoria', showMetrics: true, blockSettings: { spacing: 'normal', backgroundVariant: 'default', anchorId: 'sobre-mi' } },
+          { blockType: 'projects', enabled: true, eyebrow: '02 // PROYECTOS SELECCIONADOS', title: 'Proyectos Destacados', limit: 6, onlyFeatured: true, blockSettings: { spacing: 'normal', backgroundVariant: 'grid', anchorId: 'proyectos' } },
+          { blockType: 'experience', enabled: true, eyebrow: '03 // TRAYECTORIA PROFESIONAL', title: 'Experiencia Laboral', limit: 5, blockSettings: { spacing: 'normal', backgroundVariant: 'default', anchorId: 'experiencia' } },
+          { blockType: 'techStack', enabled: true, eyebrow: '04 // ARSENAL TECNOLÓGICO', title: 'Stack & Herramientas', blockSettings: { spacing: 'normal', backgroundVariant: 'dots', anchorId: 'stack' } },
+          { blockType: 'contact', enabled: true, eyebrow: '05 // CONTACTO & LEADS', title: '¿Tienes un proyecto en mente?', showDirectEmail: true, blockSettings: { spacing: 'spacious', backgroundVariant: 'glow', anchorId: 'contacto' } },
+        ],
+      }
+    }
+    return null
+  }
+
+  try {
+    const payload = await getPayload({ config })
+    const whereCondition: Where = {
+      slug: { equals: slug },
+    }
+    if (!draft) {
+      whereCondition._status = { equals: 'published' }
+    }
+
+    const res = await payload.find({
+      collection: 'pages',
+      where: whereCondition,
+      locale,
+      draft,
+      limit: 1,
+      depth: 2,
+    })
+
+    if (res.docs && res.docs.length > 0) {
+      const doc = res.docs[0] as unknown as {
+        id: string | number
+        title: string
+        slug: string
+        layout: PageBlock[]
+      }
+      return {
+        id: String(doc.id),
+        title: doc.title,
+        slug: doc.slug,
+        layout: Array.isArray(doc.layout) ? doc.layout : [],
+      }
+    }
+
+    if (isHome) {
+      return {
+        id: 'fallback-home',
+        title: 'Inicio',
+        slug: 'home',
+        layout: [
+          { blockType: 'hero', enabled: true, greeting: 'Hola, soy', variant: 'split', showAvailabilityBadge: true, showContactCta: true, showCvCta: true, blockSettings: { spacing: 'normal', backgroundVariant: 'default', anchorId: 'hero' } },
+          { blockType: 'about', enabled: true, eyebrow: '01 // PERFIL', title: 'Sobre Mí & Trayectoria', showMetrics: true, blockSettings: { spacing: 'normal', backgroundVariant: 'default', anchorId: 'sobre-mi' } },
+          { blockType: 'projects', enabled: true, eyebrow: '02 // PROYECTOS SELECCIONADOS', title: 'Proyectos Destacados', limit: 6, onlyFeatured: true, blockSettings: { spacing: 'normal', backgroundVariant: 'grid', anchorId: 'proyectos' } },
+          { blockType: 'experience', enabled: true, eyebrow: '03 // TRAYECTORIA PROFESIONAL', title: 'Experiencia Laboral', limit: 5, blockSettings: { spacing: 'normal', backgroundVariant: 'default', anchorId: 'experiencia' } },
+          { blockType: 'techStack', enabled: true, eyebrow: '04 // ARSENAL TECNOLÓGICO', title: 'Stack & Herramientas', blockSettings: { spacing: 'normal', backgroundVariant: 'dots', anchorId: 'stack' } },
+          { blockType: 'contact', enabled: true, eyebrow: '05 // CONTACTO & LEADS', title: '¿Tienes un proyecto en mente?', showDirectEmail: true, blockSettings: { spacing: 'spacious', backgroundVariant: 'glow', anchorId: 'contacto' } },
+        ],
+      }
+    }
+
+    return null
+  } catch {
+    return isHome
+      ? {
+          id: 'fallback-home',
+          title: 'Inicio',
+          slug: 'home',
+          layout: [
+            { blockType: 'hero', enabled: true, greeting: 'Hola, soy', variant: 'split', showAvailabilityBadge: true, showContactCta: true, showCvCta: true, blockSettings: { spacing: 'normal', backgroundVariant: 'default', anchorId: 'hero' } },
+            { blockType: 'about', enabled: true, eyebrow: '01 // PERFIL', title: 'Sobre Mí & Trayectoria', showMetrics: true, blockSettings: { spacing: 'normal', backgroundVariant: 'default', anchorId: 'sobre-mi' } },
+            { blockType: 'projects', enabled: true, eyebrow: '02 // PROYECTOS SELECCIONADOS', title: 'Proyectos Destacados', limit: 6, onlyFeatured: true, blockSettings: { spacing: 'normal', backgroundVariant: 'grid', anchorId: 'proyectos' } },
+            { blockType: 'experience', enabled: true, eyebrow: '03 // TRAYECTORIA PROFESIONAL', title: 'Experiencia Laboral', limit: 5, blockSettings: { spacing: 'normal', backgroundVariant: 'default', anchorId: 'experiencia' } },
+            { blockType: 'techStack', enabled: true, eyebrow: '04 // ARSENAL TECNOLÓGICO', title: 'Stack & Herramientas', blockSettings: { spacing: 'normal', backgroundVariant: 'dots', anchorId: 'stack' } },
+            { blockType: 'contact', enabled: true, eyebrow: '05 // CONTACTO & LEADS', title: '¿Tienes un proyecto en mente?', showDirectEmail: true, blockSettings: { spacing: 'spacious', backgroundVariant: 'glow', anchorId: 'contacto' } },
+          ],
+        }
+      : null
   }
 }
 

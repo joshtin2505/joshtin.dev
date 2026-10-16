@@ -10,6 +10,7 @@ import { Skills } from './collections/Skills'
 import { Experiences } from './collections/Experiences'
 import { Projects } from './collections/Projects'
 import { Posts } from './collections/Posts'
+import { Pages } from './collections/Pages'
 import { Profile } from './globals/Profile'
 import { HomePage } from './globals/HomePage'
 import { Landing } from './globals/Landing'
@@ -32,7 +33,7 @@ export default buildConfig({
       ],
     },
   },
-  collections: [Users, Media, Skills, Experiences, Projects, Posts],
+  collections: [Users, Media, Skills, Experiences, Projects, Posts, Pages],
   globals: [SiteSettings, Landing, Profile, HomePage],
   editor: lexicalEditor(),
   localization: {
