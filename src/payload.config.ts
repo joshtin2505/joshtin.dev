@@ -13,6 +13,7 @@ import { Posts } from './collections/Posts'
 import { Profile } from './globals/Profile'
 import { HomePage } from './globals/HomePage'
 import { Landing } from './globals/Landing'
+import { SiteSettings } from './globals/SiteSettings'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -32,7 +33,7 @@ export default buildConfig({
     },
   },
   collections: [Users, Media, Skills, Experiences, Projects, Posts],
-  globals: [Landing, Profile, HomePage],
+  globals: [SiteSettings, Landing, Profile, HomePage],
   editor: lexicalEditor(),
   localization: {
     locales: [

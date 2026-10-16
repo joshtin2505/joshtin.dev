@@ -47,6 +47,25 @@ export interface LandingData {
   }
 }
 
+export interface SiteSettingsData {
+  greeting?: string
+  fullName: string
+  jobTitle: string
+  shortBio: string
+  location: string
+  availability: string
+  avatarUrl?: string
+  heroSkills?: Array<{ id: string; name: string; iconKey?: string; category?: string }>
+  aboutTitle?: string
+  fullBio?: unknown
+  metrics?: Array<{ value: string; label: string }>
+  email: string
+  socialLinks: Array<{ network: string; url: string; username?: string }>
+  cvFileUrl?: string
+  accentColor?: string
+  motionIntensity?: 'subtle' | 'expressive' | 'reduced'
+}
+
 export interface ProfileData {
   fullName: string
   jobTitle: string
@@ -383,6 +402,151 @@ export async function getLandingData(locale: Locale = 'es'): Promise<LandingData
     }
   } catch {
     return getFallbackLanding()
+  }
+}
+
+function getFallbackSiteSettings(): SiteSettingsData {
+  const b = cvJson.basics
+  return {
+    greeting: 'Hola, soy',
+    fullName: b.name,
+    jobTitle: b.label,
+    shortBio: b.summary,
+    location: `${b.location.city}, ${b.location.region}`,
+    availability: 'open_to_work',
+    avatarUrl: b.image,
+    heroSkills: [],
+    aboutTitle: 'Sobre Mí',
+    fullBio: null,
+    metrics: [
+      { value: '+3', label: 'Años de Experiencia' },
+      { value: '15+', label: 'Proyectos Desarrollados' },
+      { value: '100%', label: 'Compromiso y Rendimiento' },
+    ],
+    email: b.email,
+    socialLinks: (b.profiles || []).map((p) => ({
+      network: p.network,
+      url: p.url,
+      username: p.username,
+    })),
+    cvFileUrl: undefined,
+    accentColor: '#10B981',
+    motionIntensity: 'subtle',
+  }
+}
+
+export async function getSiteSettings(locale: Locale = 'es'): Promise<SiteSettingsData> {
+  const fallback = getFallbackSiteSettings()
+  if (!process.env.DATABASE_URI) return fallback
+
+  try {
+    const payload = await getPayload({ config })
+    const settings = await payload.findGlobal({
+      slug: 'site-settings',
+      locale,
+      depth: 2,
+    })
+
+    if (!settings) {
+      const landing = await getLandingData(locale).catch(() => null)
+      if (landing) {
+        return {
+          ...fallback,
+          greeting: landing.greeting || fallback.greeting,
+          fullName: landing.fullName || fallback.fullName,
+          jobTitle: landing.jobTitle || fallback.jobTitle,
+          shortBio: landing.shortBio || fallback.shortBio,
+          location: landing.location || fallback.location,
+          availability: landing.availability || fallback.availability,
+          avatarUrl: landing.avatarUrl || fallback.avatarUrl,
+          heroSkills: landing.heroSkills || fallback.heroSkills,
+          aboutTitle: landing.aboutTitle || fallback.aboutTitle,
+          fullBio: landing.fullBio || fallback.fullBio,
+          metrics: landing.metrics || fallback.metrics,
+          email: landing.email || fallback.email,
+          socialLinks: landing.socialLinks || fallback.socialLinks,
+          cvFileUrl: landing.cvFileUrl || fallback.cvFileUrl,
+        }
+      }
+      return fallback
+    }
+
+    const d = settings as Record<string, unknown>
+    let avatarUrl: string | undefined = fallback.avatarUrl
+    const avatarDoc = d.avatar as Record<string, unknown> | null
+    if (avatarDoc && typeof avatarDoc === 'object') {
+      if ('url' in avatarDoc && typeof avatarDoc.url === 'string') {
+        avatarUrl = avatarDoc.url
+      } else if ('filename' in avatarDoc && typeof avatarDoc.filename === 'string') {
+        avatarUrl = `/media/${avatarDoc.filename}`
+      }
+    }
+
+    let cvFileUrl: string | undefined
+    const cvDoc = d.cvFile as Record<string, unknown> | null
+    if (cvDoc && typeof cvDoc === 'object') {
+      if ('url' in cvDoc && typeof cvDoc.url === 'string') {
+        cvFileUrl = cvDoc.url
+      } else if ('filename' in cvDoc && typeof cvDoc.filename === 'string') {
+        cvFileUrl = `/media/${cvDoc.filename}`
+      }
+    }
+
+    const heroSkills: Array<{ id: string; name: string; iconKey?: string; category?: string }> = []
+    if (Array.isArray(d.heroSkills)) {
+      for (const s of d.heroSkills) {
+        if (typeof s === 'object' && s !== null && 'name' in s) {
+          heroSkills.push({
+            id: String((s as { id?: string }).id || ''),
+            name: String((s as { name: string }).name),
+            iconKey: (s as { iconKey?: string }).iconKey,
+            category: (s as { category?: string }).category,
+          })
+        }
+      }
+    }
+
+    const metrics: Array<{ value: string; label: string }> = []
+    if (Array.isArray(d.metrics)) {
+      for (const m of d.metrics) {
+        if (typeof m === 'object' && m !== null && 'value' in m && 'label' in m) {
+          metrics.push({
+            value: String((m as { value: string }).value),
+            label: String((m as { label: string }).label),
+          })
+        }
+      }
+    }
+
+    const rawSocials = Array.isArray(d.socialLinks) ? d.socialLinks : []
+    const socialLinks = rawSocials
+      .filter((s): s is { network: string; url: string; username?: string } => typeof s === 'object' && s !== null && 'network' in s && 'url' in s)
+      .map((s) => ({
+        network: String(s.network),
+        url: String(s.url),
+        username: s.username ? String(s.username) : undefined,
+      }))
+
+    return {
+      greeting: d.greeting ? String(d.greeting) : fallback.greeting,
+      fullName: d.fullName ? String(d.fullName) : fallback.fullName,
+      jobTitle: d.jobTitle ? String(d.jobTitle) : fallback.jobTitle,
+      shortBio: d.shortBio ? String(d.shortBio) : fallback.shortBio,
+      location: d.location ? String(d.location) : fallback.location,
+      availability: d.availability ? String(d.availability) : fallback.availability,
+      avatarUrl: avatarUrl || fallback.avatarUrl,
+      heroSkills: heroSkills.length > 0 ? heroSkills : fallback.heroSkills,
+      aboutTitle: d.aboutTitle ? String(d.aboutTitle) : fallback.aboutTitle,
+      fullBio: d.fullBio || fallback.fullBio,
+      metrics: metrics.length > 0 ? metrics : fallback.metrics,
+      email: d.email ? String(d.email) : fallback.email,
+      socialLinks: socialLinks.length > 0 ? socialLinks : fallback.socialLinks,
+      cvFileUrl,
+      accentColor: d.accentColor ? String(d.accentColor) : fallback.accentColor,
+      motionIntensity: (d.motionIntensity as 'subtle' | 'expressive' | 'reduced') || fallback.motionIntensity,
+    }
+  } catch {
+    return fallback
   }
 }
 
