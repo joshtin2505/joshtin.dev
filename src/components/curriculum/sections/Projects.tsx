@@ -28,7 +28,7 @@ function Projects() {
                 </h3>
                 <p className="text-sm text-muted-foreground">{description}</p>
               </header>
-              <footer className=" flex-wrap justify-start items-center gap-1 cv-footer">
+              <footer className="flex flex-wrap justify-start items-center gap-1 text-xs text-neutral-500 dark:text-neutral-400 mt-2">
                 {highlights.map((highlight) => {
                   return (
                     <span

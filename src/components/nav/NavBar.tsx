@@ -90,6 +90,7 @@ function NavBar() {
           <div className="flex items-center sm:hidden">
             <DropdownMenu>
               <DropdownMenuTrigger
+                id='mobile-nav-menu-trigger'
                 className="p-2 rounded-md hover:bg-neutral-100 dark:hover:bg-neutral-800 transition outline-none"
                 aria-label="Abrir menú de navegación"
               >
