@@ -220,11 +220,11 @@
   h4,
   h5,
   h6 {
-    @apply font-bold text-neutral-900 dark:text-neutral-100 font-sans-sans;
+    @apply font-bold text-neutral-900 dark:text-neutral-100 font-sans;
   }
 
   p {
-    @apply font-mono-mono text-sm;
+    @apply font-mono text-sm;
   }
 
   h1 {

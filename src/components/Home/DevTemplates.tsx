@@ -6,7 +6,7 @@ function DevTemplates() {
     <div className="w-full flex flex-col py-3 overflow-x-auto">
       <h4 className="text-xl sm:text-2xl dark:text-neutral-300 flex text-center">
         Project Tamplates
-        <span className="border border-green-500 bg-green-400/20 rounded-full text-base px-2 dark:text-white font-mono-mono font-normal py-1 scale-[.80] opacity-80">
+        <span className="border border-green-500 bg-green-400/20 rounded-full text-base px-2 dark:text-white font-mono font-normal py-1 scale-[.80] opacity-80">
           Developing
         </span>
       </h4>
